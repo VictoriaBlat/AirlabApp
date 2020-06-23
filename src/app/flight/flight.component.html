@@ -1,0 +1,28 @@
+<h1>Wybór lotu</h1>
+
+<div class="wrapper">
+  <!-- //data wylotu -->
+  <input type="date" id="departureTime" min="{{ today }}" />
+  <!-- data przylotu -->
+  <input type="date" id="arrivalTime" min="{{ today }}" />
+  <!-- " -->
+  <!-- miejsce wylotu -->
+  <!-- [(ngModel)]="choosenDeparture" -->
+  <select name="" id="" (change)="changeDeparture($event)">
+    <option [value]="city.key" *ngFor="let city of opts">
+      {{ city.key }}
+    </option>
+  </select>
+  <h3>{{ choosenDeparture }}</h3>
+  <!-- miejsce przylotu -->
+  <select name="" id="">
+    <option [value]="city" *ngFor="let city of opts">
+      {{ city.value }}
+    </option>
+  </select>
+
+  <!-- liczba pasażerów -->
+  <a routerLink="/log"> <button (click)="saving()">Logowanie</button> </a>
+</div>
+<!-- <button (click)="counter()">Licznik</button> -->
+<router-outlet> </router-outlet>
