@@ -12,19 +12,25 @@ export class FlightComponent implements OnInit {
     new Date().getMonth() + 1
   }-${new Date().getDate()}`;
 
-  departure: string;
   ngOnInit() {
     console.log(this.today);
     console.log(typeof this.today);
   }
   public cities = ['Warszawa', 'Paryż', 'Nowy Jork'];
   public opts = [
-    { key: 'warsaw', value: ['paris,new york'] },
-    { key: 'paris', value: ['warsaw,new york'] },
-    { key: 'new york', value: ['warsaw, paris,'] },
+    { key: 'Warsaw', value: ['Paris', 'New York'] },
+    { key: 'Paris', value: ['Warsaw', 'New York'] },
+    { key: 'New York', value: ['Warsaw', 'Paris'] },
   ];
   public choosenDeparture;
   public arrivals;
+  departureTime;
+  arrivalTime;
+  setTime(event) {
+    this[event.target.id] = event.target.value;
+    console.log(event.target.id, event.target.value);
+  }
+  arrTime() {}
 
   changeDeparture(event) {
     this.choosenDeparture = event.target.value;
@@ -36,6 +42,7 @@ export class FlightComponent implements OnInit {
     }
 
     console.log('arrival ', this.arrivals);
+    console.log('depart', this.departureTime);
   }
   saving() {}
 

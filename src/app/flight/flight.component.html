@@ -2,27 +2,43 @@
 
 <div class="wrapper">
   <!-- //data wylotu -->
-  <input type="date" id="departureTime" min="{{ today }}" />
+  <input
+    type="date"
+    (change)="setTime($event)"
+    id="departureTime"
+    min="{{ today }}"
+  />
   <!-- data przylotu -->
-  <input type="date" id="arrivalTime" min="{{ today }}" />
+  <input
+    type="date"
+    id="arrivalTime"
+    min="{{ departureTime }}"
+    (change)="setTime($event)"
+  />
   <!-- " -->
   <!-- miejsce wylotu -->
   <!-- [(ngModel)]="choosenDeparture" -->
-  <select name="" id="" (change)="changeDeparture($event)">
+  <select
+    name=""
+    id=""
+    (change)="changeDeparture($event)"
+    value="Choose departure city"
+  >
     <option [value]="city.key" *ngFor="let city of opts">
       {{ city.key }}
     </option>
   </select>
-  <h3>{{ choosenDeparture }}</h3>
   <!-- miejsce przylotu -->
-  <select name="" id="">
-    <option [value]="city" *ngFor="let city of opts">
-      {{ city.value }}
-    </option>
-  </select>
-
+  <div *ngIf="arrivals">
+    <select name="" id="" value="Choose departure city">
+      <option [value]="city" *ngFor="let city of arrivals">
+        {{ city }}
+      </option>
+    </select>
+  </div>
   <!-- liczba pasażerów -->
   <a routerLink="/log"> <button (click)="saving()">Logowanie</button> </a>
 </div>
 <!-- <button (click)="counter()">Licznik</button> -->
+<button routerLink="/summary">Search</button>
 <router-outlet> </router-outlet>
