@@ -12,10 +12,7 @@ export class FlightComponent implements OnInit {
     new Date().getMonth() + 1
   }-${new Date().getDate()}`;
 
-  ngOnInit() {
-    console.log(this.today);
-    console.log(typeof this.today);
-  }
+  ngOnInit() {}
   public cities = ['Warszawa', 'Paryż', 'Nowy Jork'];
   public opts = [
     { key: 'Warsaw', value: ['Paris', 'New York'] },
@@ -26,8 +23,8 @@ export class FlightComponent implements OnInit {
   departureDate;
   arrivalDate;
   departureCity;
-  choosenDeparture;
-  arrivals;
+  arrivalCity;
+  arrivalOptions;
   bookingData = [];
   @Output() public bookingEvent = new EventEmitter();
   setTime(event) {
@@ -40,29 +37,24 @@ export class FlightComponent implements OnInit {
 
     for (let i = 0; i < this.opts.length; i++) {
       if (this.opts[i].key === this.departureCity) {
-        this.arrivals = this.opts[i].value;
+        this.arrivalOptions = this.opts[i].value;
       }
     }
   }
-  saving() {}
+  changeArrivalCity(event) {
+    this.arrivalCity = event.target.value;
+  }
   searchFlight() {
     this.bookingData = [
       {
         departureDate: this.departureDate,
         arrivalDate: this.arrivalDate,
         departureCity: this.departureCity,
-        arrivalCity: this.arrivals,
+        arrivalCity: this.arrivalCity,
 
-        passangers: [],
+        passengers: [],
       },
     ];
     this.bookingEvent.emit(this.bookingData);
-    console.log('fired');
-    console.log(this.departureCity);
-
-    console.log(this.choosenDeparture);
-
-    console.log();
   }
-  counter() {}
 }

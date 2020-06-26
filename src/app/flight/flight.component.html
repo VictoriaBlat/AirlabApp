@@ -15,9 +15,9 @@
     min="{{ departureDate }}"
     (change)="setTime($event)"
   />
-  <!-- " -->
   <!-- miejsce wylotu -->
   <!-- [(ngModel)]="choosenDeparture" -->
+  <br />
   <select
     name=""
     id=""
@@ -29,16 +29,23 @@
     </option>
   </select>
   <!-- miejsce przylotu -->
-  <div *ngIf="arrivals">
-    <select name="" id="" value="Choose departure city">
-      <option [value]="city" *ngFor="let city of arrivals">
+
+  <div *ngIf="arrivalOptions">
+    <select
+      name=""
+      id=""
+      value="Choose departure city"
+      (change)="changeArrivalCity($event)"
+    >
+      <option [value]="city" *ngFor="let city of arrivalOptions">
         {{ city }}
       </option>
     </select>
   </div>
   <!-- liczba pasażerów -->
-  <a routerLink="/log"> <button (click)="saving()">Logowanie</button> </a>
+  <!-- <a routerLink="/log"> <button (click)="saving()">Logowanie</button> </a> -->
 </div>
 <!-- <button (click)="counter()">Licznik</button> -->
-<button routerLink="/summary" (click)="searchFlight()">Search</button>
+<a routerLink="/summary"><button (click)="searchFlight()">Search</button></a>
+
 <router-outlet> </router-outlet>
