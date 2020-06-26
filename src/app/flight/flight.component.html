@@ -5,14 +5,14 @@
   <input
     type="date"
     (change)="setTime($event)"
-    id="departureTime"
+    id="departureDate"
     min="{{ today }}"
   />
   <!-- data przylotu -->
   <input
     type="date"
-    id="arrivalTime"
-    min="{{ departureTime }}"
+    id="arrivalDate"
+    min="{{ departureDate }}"
     (change)="setTime($event)"
   />
   <!-- " -->
@@ -40,5 +40,5 @@
   <a routerLink="/log"> <button (click)="saving()">Logowanie</button> </a>
 </div>
 <!-- <button (click)="counter()">Licznik</button> -->
-<button routerLink="/summary">Search</button>
+<button routerLink="/summary" (click)="searchFlight()">Search</button>
 <router-outlet> </router-outlet>

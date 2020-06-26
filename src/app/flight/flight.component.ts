@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,29 +22,47 @@ export class FlightComponent implements OnInit {
     { key: 'Paris', value: ['Warsaw', 'New York'] },
     { key: 'New York', value: ['Warsaw', 'Paris'] },
   ];
-  public choosenDeparture;
-  public arrivals;
-  departureTime;
-  arrivalTime;
+
+  departureDate;
+  arrivalDate;
+  departureCity;
+  choosenDeparture;
+  arrivals;
+  bookingData = [];
+  @Output() public bookingEvent = new EventEmitter();
   setTime(event) {
     this[event.target.id] = event.target.value;
-    console.log(event.target.id, event.target.value);
   }
   arrTime() {}
 
   changeDeparture(event) {
-    this.choosenDeparture = event.target.value;
+    this.departureCity = event.target.value;
 
     for (let i = 0; i < this.opts.length; i++) {
-      if (this.opts[i].key === this.choosenDeparture) {
+      if (this.opts[i].key === this.departureCity) {
         this.arrivals = this.opts[i].value;
       }
     }
-
-    console.log('arrival ', this.arrivals);
-    console.log('depart', this.departureTime);
   }
   saving() {}
+  searchFlight() {
+    this.bookingData = [
+      {
+        departureDate: this.departureDate,
+        arrivalDate: this.arrivalDate,
+        departureCity: this.departureCity,
+        arrivalCity: this.arrivals,
 
+        passangers: [],
+      },
+    ];
+    this.bookingEvent.emit(this.bookingData);
+    console.log('fired');
+    console.log(this.departureCity);
+
+    console.log(this.choosenDeparture);
+
+    console.log();
+  }
   counter() {}
 }

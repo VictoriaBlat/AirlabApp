@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'flyHigh';
+  constructor() {}
+
+  bookingData: [];
+
+  saveBookingSearch($event) {
+    this.bookingData = $event;
+    console.log(this.bookingData);
+  }
 }

@@ -9,7 +9,9 @@ import { DetailsComponent } from './details/details.component';
 import { SummaryComponent } from './summary/summary.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/flight', pathMatch: 'full' },
+  // { path: '', redirectTo: '/flight', pathMatch: 'full' },
+
+  // { path: '', component: AppComponent },
   { path: 'flight', component: FlightComponent },
   { path: 'log', component: LoginComponent },
   { path: 'details', component: DetailsComponent },
