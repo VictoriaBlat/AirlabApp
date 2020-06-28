@@ -55,6 +55,7 @@ export class FlightComponent implements OnInit {
         passengers: [],
       },
     ];
+    localStorage.setItem('booking', JSON.stringify(this.bookingData));
     this.bookingEvent.emit(this.bookingData);
   }
 }
