@@ -1,12 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { connectionsInfo } from '../connectionsInfo';
 @Component({
   selector: 'app-flight',
   templateUrl: './flight.component.html',
   styleUrls: ['./flight.component.css'],
 })
 export class FlightComponent implements OnInit {
+  public opts = connectionsInfo;
   constructor(private router: Router) {}
   public today = `${new Date().getFullYear()}-0${
     new Date().getMonth() + 1
@@ -23,35 +24,6 @@ export class FlightComponent implements OnInit {
   //   { key: 'Paris', value: ['Warsaw', 'New York'] },
   //   { key: 'New York', value: ['Warsaw', 'Paris'] },
   // ];
-  public opts = [
-    {
-      city: 'Warsaw',
-      country: 'PL',
-      continent: 'EU',
-      value: [
-        { city: 'Paris', country: 'FR', continent: 'EU' },
-        { city: 'New York', country: 'US', continent: 'NA' },
-      ],
-    },
-    {
-      city: 'Paris',
-      country: 'FR',
-      continent: 'EU',
-      value: [
-        { city: 'Warsaw', country: 'PL', continent: 'EU' },
-        { city: 'New York', country: 'US', continent: 'NA' },
-      ],
-    },
-    {
-      city: 'New York',
-      country: 'US',
-      continent: 'NA',
-      value: [
-        { city: 'Warsaw', country: 'PL', continent: 'EU' },
-        { city: 'Paris', country: 'FR', continent: 'EU' },
-      ],
-    },
-  ];
 
   departureDate;
   arrivalDate;
