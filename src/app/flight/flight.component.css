@@ -1,0 +1,34 @@
+.input-box {
+  border: solid 1px black;
+  padding: 5px;
+  width: 150px;
+}
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  /* padding: 1.5em; */
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: black;
+}
+
+.svg-icon circle {
+  stroke: black;
+  /* stroke: #4691f6; */
+
+  stroke-width: 1;
+}
+.plusMinus {
+  display: flexbox;
+  flex-direction: row;
+  align-items: center;
+}
+h6 {
+  display: inline;
+  /* padding-top: 1.5em;
+  padding-bottom: 1.5em; */
+}

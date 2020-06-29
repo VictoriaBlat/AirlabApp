@@ -7,30 +7,23 @@ import { connectionsInfo } from '../connectionsInfo';
   styleUrls: ['./flight.component.css'],
 })
 export class FlightComponent implements OnInit {
-  public opts = connectionsInfo;
-  constructor(private router: Router) {}
+  opts = connectionsInfo;
+  departureDate: string;
+  arrivalDate: string;
+  departureCity;
+  arrivalCity: string;
+  arrivalOptions;
+  bookingData = [];
+  passengers = { adults: 1, childs: 0, infants: 0 };
+  totalpassengers = 0;
   public today = `${new Date().getFullYear()}-0${
     new Date().getMonth() + 1
   }-${new Date().getDate()}`;
-
+  constructor(private router: Router) {}
   ngOnInit() {
-    let cities = this.opts.forEach((city) => {
-      console.log(city.city);
-    });
+    let cities = this.opts.forEach((city) => {});
   }
-  // public cities = ['Warszawa', 'Paryż', 'Nowy Jork'];
-  // public opts = [
-  //   { key: 'Warsaw', value: ['Paris', 'New York'] },
-  //   { key: 'Paris', value: ['Warsaw', 'New York'] },
-  //   { key: 'New York', value: ['Warsaw', 'Paris'] },
-  // ];
 
-  departureDate;
-  arrivalDate;
-  departureCity;
-  arrivalCity;
-  arrivalOptions;
-  bookingData = [];
   @Output() public bookingEvent = new EventEmitter();
   setTime(event) {
     this[event.target.id] = event.target.value;
@@ -45,13 +38,11 @@ export class FlightComponent implements OnInit {
         this.arrivalOptions = this.opts[i].value;
       }
     }
-    console.log('arrivaloptions', this.arrivalOptions);
-    console.log('length', this.arrivalOptions.length);
   }
   changeArrivalCity(event) {
-    console.log('fired');
     this.arrivalCity = event.target.value;
     console.log(this.arrivalCity);
+    //move the following part to details component coditions
     let aCode;
     this.opts.forEach((city) => {
       if (city.city === this.arrivalCity) {
@@ -61,18 +52,40 @@ export class FlightComponent implements OnInit {
 
     console.log(aCode);
   }
-  // searchFlight() {
-  //   this.bookingData = [
-  //     {
-  //       departureDate: this.departureDate,
-  //       arrivalDate: this.arrivalDate,
-  //       departureCity: this.departureCity,
-  //       arrivalCity: this.arrivalCity,
+  // <------------------_CHANGING PASSANGERS START---------------->
+  changePassengers() {}
+  deletePassengers(ev) {
+    console.log('fired');
+    console.log(typeof ev.id);
+    if (this.passengers[ev.id] > 0) {
+      this.passengers[ev.id] = this.passengers[ev.id] - 1;
+    }
+  }
+  addPassengers(ev) {
+    this.countTotalPassangers();
 
-  //       passengers: [],
-  //     },
-  //   ];
-  //   localStorage.setItem('booking', JSON.stringify(this.bookingData));
-  //   this.bookingEvent.emit(this.bookingData);
-  // }
+    if (this.totalpassengers < 10) {
+      this.passengers[ev.id] = this.passengers[ev.id] + 1;
+    }
+    this.countTotalPassangers();
+  }
+  countTotalPassangers() {
+    let { adults, childs, infants } = this.passengers;
+    this.totalpassengers = adults + childs + infants;
+  }
+  // <------------------_CHANGING PASSANGERS END---------------->
+
+  searchFlight() {
+    this.bookingData = [
+      {
+        departureDate: this.departureDate,
+        arrivalDate: this.arrivalDate,
+        departureCity: this.departureCity,
+        arrivalCity: this.arrivalCity,
+        passengers: this.passengers,
+      },
+    ];
+    localStorage.setItem('booking', JSON.stringify(this.bookingData));
+    this.bookingEvent.emit(this.bookingData);
+  }
 }
