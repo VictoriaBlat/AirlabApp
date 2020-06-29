@@ -53,7 +53,9 @@ export class FlightComponent implements OnInit {
     console.log(aCode);
   }
   // <------------------_CHANGING PASSANGERS START---------------->
-  changePassengers() {}
+  changePassengers() {
+    // TODO: TOGGLE CLASS VISSIBILITY ADDING PASSENGERS
+  }
   deletePassengers(ev) {
     console.log('fired');
     console.log(typeof ev.id);
