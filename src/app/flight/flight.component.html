@@ -18,27 +18,18 @@
   <!-- miejsce wylotu -->
   <!-- [(ngModel)]="choosenDeparture" -->
   <br />
-  <select
-    name=""
-    id=""
-    (change)="changeDeparture($event)"
-    value="Choose departure city"
-  >
-    <option [value]="city.key" *ngFor="let city of opts">
-      {{ city.key }}
+
+  <select name="" id="" value="" (change)="changeDeparture($event)">
+    <option [value]="" *ngFor="let city of opts">
+      {{ city.city }}
     </option>
   </select>
   <!-- miejsce przylotu -->
 
   <div *ngIf="arrivalOptions">
-    <select
-      name=""
-      id=""
-      value="Choose departure city"
-      (change)="changeArrivalCity($event)"
-    >
-      <option [value]="city" *ngFor="let city of arrivalOptions">
-        {{ city }}
+    <select name="" id="" value="" (change)="changeArrivalCity($event)">
+      <option [value]="city.city" *ngFor="let city of arrivalOptions">
+        {{ city.city }}
       </option>
     </select>
   </div>
@@ -46,6 +37,6 @@
   <!-- <a routerLink="/log"> <button (click)="saving()">Logowanie</button> </a> -->
 </div>
 <!-- <button (click)="counter()">Licznik</button> -->
-<a routerLink="/summary"><button (click)="searchFlight()">Search</button></a>
+<!-- <a routerLink="/details"><button (click)="searchFlight()">Search</button></a> -->
 
-<router-outlet> </router-outlet>
+<!-- <router-outlet> </router-outlet> -->
