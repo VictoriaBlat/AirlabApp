@@ -23,7 +23,6 @@ export class DetailsComponent implements OnInit {
     // this.seatsLeft = this.numberOfPassengers - this.choosenSeats;
   }
   bookSeat($event, seatNumber) {
-    //TODO: When left seats = 0. deactivate function
     // this.seatsLeft = this.numberOfPassengers;
     console.log('booked seats bevore:', this.bookedSeats);
     if (this.bookedSeats.includes(seatNumber.id)) {
@@ -33,7 +32,7 @@ export class DetailsComponent implements OnInit {
       // this.choosenSeats = this.choosenSeats - 1;
 
       console.log(this.bookedSeats.includes(seatNumber.id));
-    } else {
+    } else if (this.numberOfPassengers > this.bookedSeats.length) {
       console.log(event.srcElement);
       console.log(seatNumber.id);
       this.bookedSeats.push(seatNumber.id);
@@ -51,4 +50,5 @@ export class DetailsComponent implements OnInit {
     this.numberOfPassengers = adults + childs + infants;
     this.left = this.numberOfPassengers;
   }
+  goToDetails() {}
 }

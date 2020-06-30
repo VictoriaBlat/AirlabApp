@@ -31,6 +31,7 @@
       d="M231.9,149.6H173
 	c-6.6,0-12-5.4-12-12V78.7c0-6.6,5.4-12,12-12h58.9c6.6,0,12,5.4,12,12v58.9C243.9,144.2,238.5,149.6,231.9,149.6z"
     />
+
     <path
       [class.booked]="this.bookedSeats.includes(A2.id)"
       #A2
@@ -467,3 +468,4 @@
     /> -->
   </svg>
 </div>
+<a routerLink="/summary"><button (click)="goToDetails()">Search</button></a>
