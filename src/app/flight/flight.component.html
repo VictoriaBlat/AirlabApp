@@ -44,6 +44,7 @@
   </div>
 
   <div *ngIf="isOpen">
+    <!-- <div (clickOutside)="onClickedOutside($event)" [hidden]="isShow"> -->
     <div class="passenger-adult plusMinus">
       <svg
         class="svg-icon"
@@ -119,6 +120,7 @@
         ></path>
       </svg>
     </div>
+    <!-- </div> -->
   </div>
   <!-- <a routerLink="/log"> <button (click)="saving()">Logowanie</button> </a> -->
   <a routerLink="/details"><button (click)="searchFlight()">Search</button></a>

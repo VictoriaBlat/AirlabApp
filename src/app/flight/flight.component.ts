@@ -14,6 +14,7 @@ export class FlightComponent implements OnInit {
   departureCity;
   arrivalCity: string;
   arrivalOptions;
+  isShow = true;
 
   bookingData = [];
   passengers = { adults: 1, childs: 0, infants: 0 };
@@ -27,7 +28,8 @@ export class FlightComponent implements OnInit {
   }
   openPassengers() {
     console.log('fired');
-    this.isOpen = true;
+    this.isOpen = !this.isOpen;
+    // this.isShow = false;
   }
   @Output() public bookingEvent = new EventEmitter();
   setTime(event) {
@@ -95,4 +97,12 @@ export class FlightComponent implements OnInit {
       alert('Hello');
     }, 3000);
   }
+
+  // onClickedOutside() {
+  //   if (this.isOpen === true) {
+  //     this.isShow = true;
+  //     console.log('firedddddd');
+  //   }
+  // }
+  // return;
 }

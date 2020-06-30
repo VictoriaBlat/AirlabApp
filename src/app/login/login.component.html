@@ -3,8 +3,10 @@
 <div class="wrapper">
   <input type="text" placeholder="e-mail" #email />
   <input type="text" placeholder="hasło" #password />
-
-  <button (click)="log(email, password)">Zaloguj się</button>
+  <!-- TODO: add coditional routing routerLink="/passenger-details" -->
+  <button (click)="log(email, password)">
+    Zaloguj się
+  </button>
   {{ comUser }}
 </div>
 

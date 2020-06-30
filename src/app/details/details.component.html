@@ -470,7 +470,9 @@
 </div>
 <a
   [routerLink]="[
-    bookedSeats.length !== numberOfPassengers ? '/details' : '/summary'
+    bookedSeats.length !== numberOfPassengers
+      ? '/details'
+      : '/passengers-details'
   ]"
   ><button (click)="goToDetails()">Search</button></a
 >

@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 
 import { DetailsComponent } from './details/details.component';
 import { SummaryComponent } from './summary/summary.component';
+import { PassengersDetailsComponent } from './passengers-details/passengers-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/flight', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   // { path: '', component: AppComponent },
   { path: 'flight', component: FlightComponent },
   { path: 'log', component: LoginComponent },
+  { path: 'passengers-details', component: PassengersDetailsComponent },
   { path: 'details', component: DetailsComponent },
   { path: 'summary', component: SummaryComponent },
 ];
