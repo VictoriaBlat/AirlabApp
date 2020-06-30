@@ -468,4 +468,9 @@
     /> -->
   </svg>
 </div>
-<a routerLink="/summary"><button (click)="goToDetails()">Search</button></a>
+<a
+  [routerLink]="[
+    bookedSeats.length !== numberOfPassengers ? '/details' : '/summary'
+  ]"
+  ><button (click)="goToDetails()">Search</button></a
+>

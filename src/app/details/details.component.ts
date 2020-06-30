@@ -50,5 +50,10 @@ export class DetailsComponent implements OnInit {
     this.numberOfPassengers = adults + childs + infants;
     this.left = this.numberOfPassengers;
   }
-  goToDetails() {}
+  goToDetails() {
+    if (this.bookedSeats.length !== this.numberOfPassengers) {
+      alert('You must choose seats for all passengers');
+    }
+    localStorage.setItem('seats', JSON.stringify(this.bookedSeats));
+  }
 }
