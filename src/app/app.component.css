@@ -5,11 +5,12 @@ body {
   background-color: #f4f4f4;
 }
 * {
-  font-family: "Krona One", sans-serif;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
 }
 
 a {
-  color: #000;
+  color: white;
 }
 
 /* header */
@@ -17,11 +18,13 @@ a {
 nav {
   /* margin-bottom: 50px; */
   height: calc(3em + 20px);
+  color: white;
+  background-color: #3541a7;
 }
 
 .header {
   top: 0;
-  background-color: #fff;
+  background-color: #3541a7;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
   position: fixed;
   width: 100%;
@@ -33,7 +36,7 @@ nav {
   padding: 0;
   list-style: none;
   overflow: hidden;
-  background-color: #fff;
+  background-color: #3541a7;
 }
 
 .header li a {

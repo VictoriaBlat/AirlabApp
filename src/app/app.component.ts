@@ -9,10 +9,15 @@ export class AppComponent {
   title = 'flyHigh';
   constructor() {}
 
-  bookingData: [];
+  bookingData;
+  cart: number = 0;
 
   saveBookingSearch($event) {
     this.bookingData = $event;
     console.log(this.bookingData);
+  }
+  countPassengers() {
+    let { adults, childs, infants } = this.bookingData.passengers;
+    this.cart = adults + childs + infants;
   }
 }

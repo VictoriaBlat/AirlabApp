@@ -8,11 +8,13 @@ import { connectionsInfo } from '../connectionsInfo';
 })
 export class FlightComponent implements OnInit {
   opts = connectionsInfo;
+  isOpen = false;
   departureDate: string;
   arrivalDate: string;
   departureCity;
   arrivalCity: string;
   arrivalOptions;
+
   bookingData = [];
   passengers = { adults: 1, childs: 0, infants: 0 };
   totalpassengers = 0;
@@ -23,7 +25,10 @@ export class FlightComponent implements OnInit {
   ngOnInit() {
     let cities = this.opts.forEach((city) => {});
   }
-
+  openPassengers() {
+    console.log('fired');
+    this.isOpen = true;
+  }
   @Output() public bookingEvent = new EventEmitter();
   setTime(event) {
     this[event.target.id] = event.target.value;
@@ -32,7 +37,6 @@ export class FlightComponent implements OnInit {
 
   changeDeparture(event) {
     this.departureCity = event.target.value;
-    console.log('departureCity', this.departureCity);
     for (let i = 0; i < this.opts.length; i++) {
       if (this.opts[i].city === this.departureCity) {
         this.arrivalOptions = this.opts[i].value;
@@ -57,8 +61,6 @@ export class FlightComponent implements OnInit {
     // TODO: TOGGLE CLASS VISSIBILITY ADDING PASSENGERS
   }
   deletePassengers(ev) {
-    console.log('fired');
-    console.log(typeof ev.id);
     if (this.passengers[ev.id] > 0) {
       this.passengers[ev.id] = this.passengers[ev.id] - 1;
     }
@@ -89,5 +91,8 @@ export class FlightComponent implements OnInit {
     ];
     localStorage.setItem('booking', JSON.stringify(this.bookingData));
     this.bookingEvent.emit(this.bookingData);
+    setTimeout(function () {
+      alert('Hello');
+    }, 3000);
   }
 }
