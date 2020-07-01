@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { connectionsInfo } from '../connectionsInfo';
 
 @Component({
   selector: 'app-details',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent implements OnInit {
+  info = connectionsInfo;
   bookingData;
   isbooked = false;
   bookedSeats = [];
@@ -13,12 +15,15 @@ export class DetailsComponent implements OnInit {
   // choosenSeats = 0;
   // seatsLeft;
   left;
+  departureTimeA;
 
   constructor() {}
 
   ngOnInit(): void {
     this.bookingData = JSON.parse(localStorage.getItem('booking'))[0];
     console.log(this.bookingData);
+    console.log(this.bookingData);
+
     this.countPassengers();
     // this.seatsLeft = this.numberOfPassengers - this.choosenSeats;
   }

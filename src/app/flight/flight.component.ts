@@ -10,6 +10,7 @@ export class FlightComponent implements OnInit {
   opts = connectionsInfo;
   isOpen = false;
   departureDate: string;
+  departureTime;
   arrivalDate: string;
   departureCity;
   arrivalCity: string;
@@ -55,7 +56,18 @@ export class FlightComponent implements OnInit {
         aCode = city.country;
       }
     });
-
+    //Time of departure
+    this.opts.forEach((city) => {
+      if (city.city === this.departureCity) {
+        console.log(city);
+        city.value.forEach((arrival) => {
+          if (arrival.city === this.arrivalCity) {
+            this.departureTime = arrival.departureTime;
+          }
+        });
+      }
+    });
+    console.log(this.departureTime);
     console.log(aCode);
   }
   // <------------------_CHANGING PASSANGERS START---------------->
