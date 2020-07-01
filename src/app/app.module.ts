@@ -10,7 +10,8 @@ import { FlightComponent } from './flight/flight.component';
 import { LoginComponent } from './login/login.component';
 import { SummaryComponent } from './summary/summary.component';
 import { PassengersDetailsComponent } from './passengers-details/passengers-details.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,13 @@ import { PassengersDetailsComponent } from './passengers-details/passengers-deta
     SummaryComponent,
     PassengersDetailsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ClickOutsideModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ClickOutsideModule,
+    BrowserAnimationsModule,
+    MatButtonToggleModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

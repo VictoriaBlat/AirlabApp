@@ -1,5 +1,21 @@
-<h1>Wybór lotu</h1>
+<h1>PURCHASE A TICKET</h1>
 
+<!-- Default appearance: -->
+<!-- <mat-button-toggle-group #trip name="fontStyle" aria-label="Font Style">
+  <mat-button-toggle ng-click="roundTrip = true" value="round-trip"
+    >ROUND TRIP</mat-button-toggle
+  >
+  <mat-button-toggle ng-click="roundTrip = false" value="one-way"
+    >ONE-WAY</mat-button-toggle
+  > -->
+<!-- </mat-button-toggle-group> -->
+<!-- </p> -->
+<h4 *ngIf="roundTrip; else oneWay">ROUND TRIP</h4>
+<ng-template #oneWay> ONE WAY</ng-template>
+<label class="switch">
+  <input type="checkbox" [checked]="roundTrip" (change)="changeTrip()" />
+  <span class="slider round"></span> </label
+><ng-template #oneWay><h4>ONE WAY</h4> </ng-template>
 <div class="wrapper">
   <!-- //data wylotu -->
   <input
@@ -12,6 +28,7 @@
 
   <!-- TODO Ad max values -->
   <input
+    *ngIf="roundTrip"
     type="date"
     id="arrivalDate"
     min="{{ departureDate }}"
@@ -35,6 +52,7 @@
       </option>
     </select>
   </div>
+  <h3>{{ missingData1 }}</h3>
   <!-- (click)="changePassengers()" -->
   <div class="input-box" (click)="openPassengers()">
     <h5>Passengers</h5>
@@ -123,7 +141,9 @@
     <!-- </div> -->
   </div>
   <!-- <a routerLink="/log"> <button (click)="saving()">Logowanie</button> </a> -->
-  <a routerLink="/details"><button (click)="searchFlight()">Search</button></a>
+  <a [routerLink]="[this.arrivalCity == null ? '/flight' : '/details']"
+    ><button (click)="searchFlight()">Search</button></a
+  >
 </div>
 
 <!-- <router-outlet> </router-outlet> -->

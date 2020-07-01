@@ -10,12 +10,15 @@ export class FlightComponent implements OnInit {
   opts = connectionsInfo;
   isOpen = false;
   departureDate: string;
-  departureTime;
+  departureTime: string;
   arrivalDate: string;
-  departureCity;
+  departureCity: string;
   arrivalCity: string;
   arrivalOptions;
   isShow = true;
+  roundTrip = true;
+  trip;
+  missingData1;
 
   bookingData = [];
   passengers = { adults: 1, childs: 0, infants: 0 };
@@ -28,15 +31,15 @@ export class FlightComponent implements OnInit {
     let cities = this.opts.forEach((city) => {});
   }
   openPassengers() {
-    console.log('fired');
     this.isOpen = !this.isOpen;
-    // this.isShow = false;
+  }
+  changeTrip() {
+    this.roundTrip = !this.roundTrip;
   }
   @Output() public bookingEvent = new EventEmitter();
   setTime(event) {
     this[event.target.id] = event.target.value;
   }
-  arrTime() {}
 
   changeDeparture(event) {
     this.departureCity = event.target.value;
@@ -48,7 +51,6 @@ export class FlightComponent implements OnInit {
   }
   changeArrivalCity(event) {
     this.arrivalCity = event.target.value;
-    console.log(this.arrivalCity);
     //move the following part to details component coditions
     let aCode;
     this.opts.forEach((city) => {
@@ -59,7 +61,6 @@ export class FlightComponent implements OnInit {
     //Time of departure
     this.opts.forEach((city) => {
       if (city.city === this.departureCity) {
-        console.log(city);
         city.value.forEach((arrival) => {
           if (arrival.city === this.arrivalCity) {
             this.departureTime = arrival.departureTime;
@@ -67,8 +68,6 @@ export class FlightComponent implements OnInit {
         });
       }
     });
-    console.log(this.departureTime);
-    console.log(aCode);
   }
   // <------------------_CHANGING PASSANGERS START---------------->
   changePassengers() {
@@ -94,6 +93,11 @@ export class FlightComponent implements OnInit {
   // <------------------_CHANGING PASSANGERS END---------------->
 
   searchFlight() {
+    if (this.arrivalCity == null) {
+      this.missingData1 = 'You must choose the arrival';
+    } else {
+      this.missingData1 = null;
+    }
     this.bookingData = [
       {
         departureDate: this.departureDate,
@@ -103,18 +107,8 @@ export class FlightComponent implements OnInit {
         passengers: this.passengers,
       },
     ];
+
     localStorage.setItem('booking', JSON.stringify(this.bookingData));
     this.bookingEvent.emit(this.bookingData);
-    setTimeout(function () {
-      alert('Hello');
-    }, 3000);
   }
-
-  // onClickedOutside() {
-  //   if (this.isOpen === true) {
-  //     this.isShow = true;
-  //     console.log('firedddddd');
-  //   }
-  // }
-  // return;
 }
