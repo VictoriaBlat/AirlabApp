@@ -1,13 +1,20 @@
-<h1>Ekran logowania</h1>
+<h1>Login FlyHigh</h1>
 
 <div class="wrapper">
-  <input type="text" placeholder="e-mail" #email />
-  <input type="text" placeholder="hasło" #password />
+  <label for="mail">E-Mail Address</label>
+  <input id="mail" type="text" placeholder="e-mail" #email />
+  <label for="passwort">Passwort</label>
+
+  <input type="text" placeholder="Password" #password />
+  <h5>Do not remember your password?</h5>
   <!-- TODO: add coditional routing routerLink="/passenger-details" -->
   <button (click)="log(email, password)">
     Zaloguj się
   </button>
   {{ comUser }}
 </div>
+
+<h3>Register</h3>
+<h5>Easy and fast</h5>
 
 <router-outlet> </router-outlet>

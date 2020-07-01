@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { users } from './users';
 @Component({
   selector: 'app-login',
@@ -7,35 +9,33 @@ import { users } from './users';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  public aaa = 'a';
   public comUser = '';
-  constructor(private router: Router) {}
+  public loggedIn = false;
+  user;
+  constructor(private router: Router, private _location: Location) {}
 
   ngOnInit() {}
 
   log(email, password) {
-    console.log(email.value.toLowerCase());
-    console.log(password.value);
-
     for (let i = 0; i < users.length; i++) {
       if (
         users[i].email == email.value.toLowerCase() &&
         users[i].password == password.value
       ) {
-        console.log('istnieje uzytkownik');
-        this.comUser =
-          'znaleziono uzytkownika, za chwilkę nastąpi przekierowanie';
-        this.router.navigate(['/details']);
+        this.comUser = 'Loged in. You will be redirected';
+        this.loggedIn = true;
+        localStorage.setItem('userLogedIn', JSON.stringify(users[i]));
+        localStorage.setItem('loggedIn', JSON.stringify(this.loggedIn));
+        this.user = JSON.parse(localStorage.getItem('userLogedIn'));
+        console.log('user logged:', this.user);
+        this._location.back();
+        // this.router.navigate(['/details']);
+        // window.location.reload();
+
         break;
       } else {
         this.comUser = 'błędne dane lub uzytkownik nie istnieje';
       }
     }
-
-    // if (this.aaa == 'a')
-    // {this.router.navigate(['/details']);}
-    // else {
-    //   this.noUser = "Błędny e-mail lub hasło"
-    // }
   }
 }
