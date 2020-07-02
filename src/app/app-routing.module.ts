@@ -11,8 +11,6 @@ import { PassengersDetailsComponent } from './passengers-details/passengers-deta
 
 const routes: Routes = [
   { path: '', redirectTo: '/flight', pathMatch: 'full' },
-
-  // { path: '', component: AppComponent },
   { path: 'flight', component: FlightComponent },
   { path: 'log', component: LoginComponent },
   { path: 'passengers-details', component: PassengersDetailsComponent },

@@ -1,4 +1,11 @@
 <h1>PURCHASE A TICKET</h1>
+<!-- DATE PICKER MATERIAL -->
+<!-- <mat-form-field>
+  <input matInput [matDatepicker]="myDatePicker" />
+  <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+  <mat-datepicker #myDatePicker></mat-datepicker>
+</mat-form-field> -->
+<!-- DATE PICKER MATERIAL -->
 
 <!-- Default appearance: -->
 <!-- <mat-button-toggle-group #trip name="fontStyle" aria-label="Font Style">
@@ -10,6 +17,16 @@
   > -->
 <!-- </mat-button-toggle-group> -->
 <!-- </p> -->
+<!-- MATERIAL TOGGLE START -->
+
+<mat-button-toggle-group #toggleGroup="matButtonToggleGroup">
+  <mat-button-toggle value="one-way">ONE-WAY</mat-button-toggle>
+  <mat-button-toggle value="ROUND-TRIP"
+    >ROUND TRIP</mat-button-toggle
+  > </mat-button-toggle-group
+>{{ toggleGroup.value }}
+
+<!-- MATERIAL TOGGLE END -->
 <h4 *ngIf="roundTrip; else oneWay">ROUND TRIP</h4>
 <ng-template #oneWay> ONE WAY</ng-template>
 <label class="switch">
@@ -142,8 +159,9 @@
   </div>
   <!-- <a routerLink="/log"> <button (click)="saving()">Logowanie</button> </a> -->
   <a [routerLink]="[this.arrivalCity == null ? '/flight' : '/details']"
-    ><button (click)="searchFlight()">Search</button></a
+    ><button mat-raised-button (click)="searchFlight()">Search</button></a
   >
+  <button mat-raised-button (click)="openDialog()">open Dialog</button>
 </div>
 
 <!-- <router-outlet> </router-outlet> -->

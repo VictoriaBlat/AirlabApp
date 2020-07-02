@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { connectionsInfo } from '../connectionsInfo';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogSearchComponent } from '../dialog-search/dialog-search.component';
 @Component({
   selector: 'app-flight',
   templateUrl: './flight.component.html',
@@ -19,6 +21,8 @@ export class FlightComponent implements OnInit {
   roundTrip = true;
   trip;
   missingData1;
+  matButtonToggleGroup;
+  toggleGroup;
 
   bookingData = [];
   passengers = { adults: 1, childs: 0, infants: 0 };
@@ -26,7 +30,10 @@ export class FlightComponent implements OnInit {
   public today = `${new Date().getFullYear()}-0${
     new Date().getMonth() + 1
   }-${new Date().getDate()}`;
-  constructor(private router: Router) {}
+  constructor(private router: Router, public dialog: MatDialog) {}
+  openDialog() {
+    this.dialog.open(DialogSearchComponent);
+  }
   ngOnInit() {
     let cities = this.opts.forEach((city) => {});
   }
@@ -93,8 +100,14 @@ export class FlightComponent implements OnInit {
   // <------------------_CHANGING PASSANGERS END---------------->
 
   searchFlight() {
+    console.log(
+      'togglevalue',
+
+      this.toggleGroup
+    );
     if (this.arrivalCity == null) {
       this.missingData1 = 'You must choose the arrival';
+      this.openDialog();
     } else {
       this.missingData1 = null;
     }

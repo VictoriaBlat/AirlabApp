@@ -1,18 +1,29 @@
 <h1>Login FlyHigh</h1>
 
-<div class="wrapper">
+<!-- MAT INPUT -->
+<mat-form-field appearance="outline">
+  <mat-label>E-MAIL</mat-label>
+  <input matInput #email />
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>PASSWORD</mat-label>
+  <input matInput #password />
+</mat-form-field>
+<!-- MAT INPUT -->
+
+<!-- <div class="wrapper">
   <label for="mail">E-Mail Address</label>
   <input id="mail" type="text" placeholder="e-mail" #email />
   <label for="passwort">Passwort</label>
 
   <input type="text" placeholder="Password" #password />
-  <h5>Do not remember your password?</h5>
-  <!-- TODO: add coditional routing routerLink="/passenger-details" -->
-  <button (click)="log(email, password)">
-    Zaloguj się
-  </button>
-  {{ comUser }}
-</div>
+  <h5>Do not remember your password?</h5> -->
+<!-- TODO: add coditional routing routerLink="/passenger-details" -->
+<button mat-raised-button (click)="log(email, password)">
+  Zaloguj się
+</button>
+{{ comUser }}
+<!-- </div> -->
 
 <h3>Register</h3>
 <h5>Easy and fast</h5>
