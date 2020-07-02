@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { connectionsInfo } from '../connectionsInfo';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogSearchComponent } from '../dialog-search/dialog-search.component';
+import { SessionTimeoutComponent } from '../session-timeout/session-timeout.component';
+
 @Component({
   selector: 'app-flight',
   templateUrl: './flight.component.html',
@@ -23,6 +25,8 @@ export class FlightComponent implements OnInit {
   missingData1;
   matButtonToggleGroup;
   toggleGroup;
+  price;
+  planeCode;
 
   bookingData = [];
   passengers = { adults: 1, childs: 0, infants: 0 };
@@ -30,9 +34,16 @@ export class FlightComponent implements OnInit {
   public today = `${new Date().getFullYear()}-0${
     new Date().getMonth() + 1
   }-${new Date().getDate()}`;
-  constructor(private router: Router, public dialog: MatDialog) {}
+  constructor(
+    private router: Router,
+    public dialog1: MatDialog,
+    public dialog2: MatDialog
+  ) {}
+  sessionPassed() {
+    this.dialog2.open(SessionTimeoutComponent);
+  }
   openDialog() {
-    this.dialog.open(DialogSearchComponent);
+    this.dialog1.open(DialogSearchComponent);
   }
   ngOnInit() {
     let cities = this.opts.forEach((city) => {});
@@ -75,6 +86,53 @@ export class FlightComponent implements OnInit {
         });
       }
     });
+    //price
+    this.opts.forEach((city) => {
+      if (city.city === this.departureCity) {
+        city.value.forEach((arrival) => {
+          if (arrival.city === this.arrivalCity) {
+            this.price = arrival.prices[Math.floor(Math.random() * 4)];
+          }
+        });
+      }
+    });
+    console.log(this.price);
+    //set plane codes - plane types A= connections with the country, B=connections within the continent, C = continental connections
+    let departureCountry;
+    let departureContinent;
+    let arrivalCountry;
+    let arrivalContinent;
+    this.opts.forEach((city) => {
+      if (city.city === this.departureCity) {
+        departureCountry = city.country;
+        departureContinent = city.continent;
+        city.value.forEach((arrival) => {
+          if (arrival.city === this.arrivalCity) {
+            arrivalCountry = arrival.country;
+            arrivalContinent = arrival.continent;
+            this.price = arrival.prices[Math.floor(Math.random() * 4)];
+          }
+        });
+      }
+    });
+    console.log(this.price);
+    console.log(
+      departureCountry,
+      departureContinent,
+      arrivalCountry,
+      arrivalContinent
+    );
+    if (departureCountry === arrivalCountry) {
+      this.planeCode = 'A';
+    } else if (
+      departureCountry !== arrivalCountry &&
+      departureContinent === arrivalContinent
+    ) {
+      this.planeCode = 'B';
+    } else {
+      this.planeCode = 'C';
+    }
+    console.log('plane code:', this.planeCode);
   }
   // <------------------_CHANGING PASSANGERS START---------------->
   changePassengers() {
@@ -100,6 +158,10 @@ export class FlightComponent implements OnInit {
   // <------------------_CHANGING PASSANGERS END---------------->
 
   searchFlight() {
+    setTimeout(() => {
+      this.sessionPassed();
+      localStorage.clear();
+    }, 10000);
     console.log(
       'togglevalue',
 
@@ -118,6 +180,7 @@ export class FlightComponent implements OnInit {
         departureCity: this.departureCity,
         arrivalCity: this.arrivalCity,
         passengers: this.passengers,
+        price: this.price,
       },
     ];
 

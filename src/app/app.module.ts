@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogSearchComponent } from './dialog-search/dialog-search.component';
+import { SessionTimeoutComponent } from './session-timeout/session-timeout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { DialogSearchComponent } from './dialog-search/dialog-search.component';
     SummaryComponent,
     PassengersDetailsComponent,
     DialogSearchComponent,
+    SessionTimeoutComponent,
   ],
   entryComponents: [DialogSearchComponent],
   imports: [
