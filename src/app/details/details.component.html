@@ -6,46 +6,53 @@
   </mat-card-header>
 
   <mat-card-content>
+    <div>
+      <i class="material-icons view_inline">flight_takeoff</i>
+      <h3 class="view_inline">{{ bookingData.departureCity }}</h3>
+      <h3>
+        Departure: {{ bookingData.departureCity }}
+        {{ bookingData.departureDate }} Departure Time:
+        {{ bookingData.departureTime1 }}
+      </h3>
+    </div>
+    <i class="material-icons">flight_land</i>
+
+    <h3>Arrival: {{ bookingData.arrivalCity }}</h3>
+    <h3>Price {{ bookingData.price[0] }} €</h3>
+  </mat-card-content>
+  <!-- <mat-card-actions>
+    <button mat-button>LIKE</button>
+  </mat-card-actions> -->
+</mat-card>
+<mat-card class="flight-card" *ngIf="bookingData.roundTrip === true">
+  <mat-card-header class="header-card">
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title> RETURN FLIGHT</mat-card-title>
+    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+  </mat-card-header>
+
+  <mat-card-content>
+    <i class="material-icons">flight_takeoff</i>
     <h3>
-      Departure: {{ bookingData.departureCity }}
+      Departure: {{ bookingData.arrivalCity }}
       {{ bookingData.departureDate }} Departure Time:
-      {{ bookingData.departureTime1 }}
+      {{ bookingData.departureTime2 }}
     </h3>
     <i class="material-icons">flight_land</i>
-    <h3>Arrival: {{ bookingData.arrivalCity }}</h3>
-    <h3>Price {{ bookingData.price[0] }}</h3>
+    <h3>
+      Arrival: {{ bookingData.departureCity }} {{ bookingData.arrivalDate }}
+    </h3>
+    <h3>Price: {{ bookingData.price[1] }}</h3>
   </mat-card-content>
-  <mat-card-actions>
+  <!-- <mat-card-actions>
     <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
+  </mat-card-actions> -->
 </mat-card>
 
-<h3>
-  Departure: {{ bookingData.departureCity }}
-  {{ bookingData.departureDate }} Departure Time:
-  {{ bookingData.departureTime1 }}
-</h3>
-<i class="material-icons">flight_land</i>
-<h3>Arrival: {{ bookingData.arrivalCity }}</h3>
-<h3>Price {{ bookingData.price[0] }}</h3>
-<div *ngIf="bookingData.roundTrip === true">
-  <i class="material-icons">flight_takeoff</i>
-  <h3>
-    Departure: {{ bookingData.arrivalCity }}
-    {{ bookingData.departureDate }} Departure Time:
-    {{ bookingData.departureTime2 }}
-  </h3>
-  <i class="material-icons">flight_land</i>
-  <h3>
-    Arrival: {{ bookingData.departureCity }} {{ bookingData.arrivalDate }}
-  </h3>
-  <h3>Price: {{ bookingData.price[1] }}</h3>
-</div>
-<h2>Total price</h2>
+<h2>Base price {{ bookingData.basePrice }} €</h2>
 
-<h4>mat-select</h4>
-<mat-form-field appearance="fill">
+<!-- <h4>mat-select</h4> -->
+<!-- <mat-form-field appearance="fill">
   <mat-label>EURO</mat-label>
   <mat-select [(ngModel)]="selectedCar">
     <mat-option value="USD">USD</mat-option>
@@ -55,11 +62,13 @@
 </mat-form-field>
 {{ selectedCar }}
 
-<button (click)="changeCurrency()">SPRAWDZ</button>
+<button (click)="changeCurrency()">SPRAWDZ</button> -->
 
 <h3>Number of passengers: {{ numberOfPassengers }}</h3>
-<h3>Seats choosen: {{ bookedSeats.length }}</h3>
-<h3 *ngIf="left > 0">Choose more {{ left }}</h3>
+<h3>Seats choosen:</h3>
+<p *ngFor="let seat of bookedSeats">{{ seat }}</p>
+
+<h3 *ngIf="left > 0">Choose {{ left }} more</h3>
 
 <div class="seats">
   <h5>Choose Your seats</h5>
@@ -661,5 +670,7 @@
       ? '/details'
       : '/passengers-details'
   ]"
-  ><button (click)="goToDetails()">Search</button></a
+  ><button mat-raised-button (click)="goToDetails()">
+    Save and continue
+  </button></a
 >

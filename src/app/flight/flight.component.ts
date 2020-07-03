@@ -29,6 +29,7 @@ export class FlightComponent implements OnInit {
   price = [];
   planeCode: string;
   blub;
+  totalPrice: number;
 
   bookingData = [];
   passengers = { adults: 1, childs: 0, infants: 0 };
@@ -192,6 +193,11 @@ export class FlightComponent implements OnInit {
     } else {
       this.missingData1 = null;
     }
+    if (this.roundTrip === true) {
+      this.totalPrice = this.totalpassengers * (this.price[0] + this.price[1]);
+    } else {
+      this.totalPrice = this.totalpassengers * this.price[0];
+    }
     this.bookingData = [
       {
         departureDate: this.departureDate,
@@ -204,6 +210,7 @@ export class FlightComponent implements OnInit {
         departureTime2: this.departureTime2,
         planeCode: this.planeCode,
         roundTrip: this.roundTrip,
+        basePrice: this.totalPrice,
       },
     ];
 

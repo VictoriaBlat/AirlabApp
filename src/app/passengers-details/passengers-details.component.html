@@ -18,4 +18,17 @@
     A helping hand for travel uncertainties (e.g. change of plans, unexpected
     events, COVID19)
   </h6>
+  <!-- <h2>{{ totalPriceEUR }}</h2> -->
+  <h2>{{ selectedCar }}</h2>
+  <h2 *ngIf="selectedCar == null">{{ totalPriceEUR }}</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>EURO</mat-label>
+    <mat-select [(ngModel)]="selectedCar">
+      <mat-option [value]="totalPriceUSD">USD</mat-option>
+      <mat-option [value]="totalPricePLN">PLN</mat-option>
+      <mat-option [value]="totalPriceEUR">EUR</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- <button (click)="changeCurrency()">SPRAWDZ</button> -->
 </div>

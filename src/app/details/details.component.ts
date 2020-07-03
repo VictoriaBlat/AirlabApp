@@ -70,6 +70,9 @@ export class DetailsComponent implements OnInit {
       });
   }
   changeCurrency() {
+    this.getPln();
+    this.countUsd();
+    console.log(this.totalPriceEUR, this.totalPricePLN, this.totalPriceUSD);
     console.log('selectedCar', this.selectedCar);
     console.log('fired');
   }

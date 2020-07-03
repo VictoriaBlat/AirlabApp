@@ -20,3 +20,6 @@ h5 {
 .header-card {
   background-color: rgb(209, 203, 203);
 }
+.view_inline {
+  display: inline;
+}
