@@ -12,7 +12,8 @@ export class PassengersDetailsComponent implements OnInit {
   totalPricePLN;
   totalPriceUSD;
   selectedCar = this.totalPriceEUR;
-
+  test = 1;
+  passengersData = [];
   constructor() {}
 
   ngOnInit(): void {
@@ -21,6 +22,10 @@ export class PassengersDetailsComponent implements OnInit {
     console.log(this.totalPriceEUR);
     this.getPln();
     this.countUsd();
+    for (let i = 0; i < this.bookingData.numberOfPassengers; i++) {
+      this.passengersData.push({ name: '', surname: '', email: '' });
+    }
+    console.log(this.passengersData);
   }
 
   getPln() {
@@ -42,11 +47,10 @@ export class PassengersDetailsComponent implements OnInit {
         );
       });
   }
-  changeCurrency() {
-    console.log(this.totalPriceEUR, this.totalPricePLN, this.totalPriceUSD);
-    console.log('selectedCar', this.selectedCar);
-    console.log('fired');
-    console.log('selectedCar', this.selectedCar);
-    console.log('fired');
+
+  submitingInfo() {
+    console.log(this.passengersData);
+    localStorage.setItem('passengersData', JSON.stringify(this.passengersData));
   }
+  changeCurrency() {}
 }

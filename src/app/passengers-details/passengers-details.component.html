@@ -2,9 +2,27 @@
 <a routerLink="/log"><button>Login!</button></a>
 <div class="passengerInfo">
   <h5>PASSENGER (ADULT)</h5>
-  <input placeholder="FIRST NAME" type="text" />
-  <input placeholder="FIRST NAME" type="text" />
-  <input placeholder="E-MAIL ADDRESS" type="text" />
+  <div
+    *ngFor="
+      let i of [].constructor(bookingData.numberOfPassengers);
+      let x = index
+    "
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>FIRST NAME</mat-label>
+      <input matInput #first [(ngModel)]="passengersData[x].name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>LAST NAME </mat-label>
+      <input matInput #last [(ngModel)]="passengersData[x].surname" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>E-MAIL </mat-label>
+      <input matInput #mail [(ngModel)]="passengersData[x].email" />
+    </mat-form-field>
+  </div>
+  <button (click)="submitingInfo()">Check it out</button>
+
   <h5>CHECKED-IN BAGGAGE</h5>
   <h6>PLEASE SELECT</h6>
   <h5>CABIN BAGGAGE</h5>

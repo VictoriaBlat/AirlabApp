@@ -211,6 +211,7 @@ export class FlightComponent implements OnInit {
         planeCode: this.planeCode,
         roundTrip: this.roundTrip,
         basePrice: this.totalPrice,
+        numberOfPassengers: this.totalpassengers,
       },
     ];
 
