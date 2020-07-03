@@ -23,6 +23,9 @@ import { DialogSearchComponent } from './dialog-search/dialog-search.component';
 import { SessionTimeoutComponent } from './session-timeout/session-timeout.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ChooseSeatsDialogComponent } from './choose-seats-dialog/choose-seats-dialog.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ import { ChooseSeatsDialogComponent } from './choose-seats-dialog/choose-seats-d
     MatFormFieldModule,
     MatDialogModule,
     MatSelectModule,
+    MatExpansionModule,
+    MatTooltipModule,
+    MatIconModule,
   ],
   providers: [
     {

@@ -32,7 +32,7 @@ export class FlightComponent implements OnInit {
 
   bookingData = [];
   passengers = { adults: 1, childs: 0, infants: 0 };
-  totalpassengers = 0;
+  totalpassengers = 1;
   public today = `${new Date().getFullYear()}-0${
     new Date().getMonth() + 1
   }-${new Date().getDate()}`;
