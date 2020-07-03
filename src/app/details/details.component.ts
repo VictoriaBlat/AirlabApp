@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { connectionsInfo } from '../connectionsInfo';
+import { ChooseSeatsDialogComponent } from '../choose-seats-dialog/choose-seats-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-details',
@@ -19,7 +21,7 @@ export class DetailsComponent implements OnInit {
   totalPriceUSD;
   selectedCar;
 
-  constructor() {}
+  constructor(public chooseSeats: MatDialog) {}
 
   ngOnInit(): void {
     this.bookingData = JSON.parse(localStorage.getItem('booking'))[0];
@@ -43,7 +45,8 @@ export class DetailsComponent implements OnInit {
   }
   goToDetails() {
     if (this.bookedSeats.length !== this.numberOfPassengers) {
-      alert('You must choose seats for all passengers');
+      this.chooseSeats.open(ChooseSeatsDialogComponent);
+      // alert('You must choose seats for all passengers');
     }
     localStorage.setItem('seats', JSON.stringify(this.bookedSeats));
   }

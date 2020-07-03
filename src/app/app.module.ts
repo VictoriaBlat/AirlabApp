@@ -22,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogSearchComponent } from './dialog-search/dialog-search.component';
 import { SessionTimeoutComponent } from './session-timeout/session-timeout.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ChooseSeatsDialogComponent } from './choose-seats-dialog/choose-seats-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatSelectModule } from '@angular/material/select';
     PassengersDetailsComponent,
     DialogSearchComponent,
     SessionTimeoutComponent,
+    ChooseSeatsDialogComponent,
   ],
   entryComponents: [DialogSearchComponent],
   imports: [
