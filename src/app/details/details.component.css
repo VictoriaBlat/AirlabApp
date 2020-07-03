@@ -13,3 +13,10 @@ h5 {
 .booked {
   fill: white;
 }
+.flight-card {
+  max-width: 40vw;
+}
+
+.header-card {
+  background-color: rgb(209, 203, 203);
+}

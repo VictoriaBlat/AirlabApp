@@ -1,46 +1,35 @@
 <h1>PURCHASE A TICKET</h1>
-<!-- DATE PICKER MATERIAL -->
-<!-- <mat-form-field>
+<div class="content-wrapper">
+  <!-- DATE PICKER MATERIAL -->
+  <!-- <mat-form-field>
   <input matInput [matDatepicker]="myDatePicker" />
   <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
   <mat-datepicker #myDatePicker></mat-datepicker>
 </mat-form-field> -->
-<!-- DATE PICKER MATERIAL -->
+  <!-- DATE PICKER MATERIAL -->
 
-<!-- Default appearance: -->
-<!-- <mat-button-toggle-group #trip name="fontStyle" aria-label="Font Style">
-  <mat-button-toggle ng-click="roundTrip = true" value="round-trip"
-    >ROUND TRIP</mat-button-toggle
+  <!-- MATERIAL TOGGLE START -->
+
+  <mat-button-toggle-group
+    [(ngModel)]="blub"
+    #toggleGroup="matButtonToggleGroup"
+    (change)="changeTrip()"
   >
-  <mat-button-toggle ng-click="roundTrip = false" value="one-way"
-    >ONE-WAY</mat-button-toggle
-  > -->
-<!-- </mat-button-toggle-group> -->
-<!-- </p> -->
-<!-- MATERIAL TOGGLE START -->
+    <mat-button-toggle checked="true" value="one-way"
+      >ONE-WAY</mat-button-toggle
+    >
+    <mat-button-toggle value="ROUND-TRIP">ROUND TRIP</mat-button-toggle>
+  </mat-button-toggle-group>
+  <br />
 
-<mat-button-toggle-group [(ngModel)]="blub" #toggleGroup="matButtonToggleGroup">
-  <mat-button-toggle checked="true" value="one-way">ONE-WAY</mat-button-toggle>
-  <mat-button-toggle value="ROUND-TRIP">ROUND TRIP</mat-button-toggle>
-</mat-button-toggle-group>
-
-<!-- MATERIAL TOGGLE END -->
-<h4 *ngIf="roundTrip; else oneWay">ROUND TRIP</h4>
-<ng-template #oneWay> ONE WAY</ng-template>
-<label class="switch">
-  <input type="checkbox" [checked]="roundTrip" (change)="changeTrip()" />
-  <span class="slider round"></span> </label
-><ng-template #oneWay><h4>ONE WAY</h4> </ng-template>
-<div class="wrapper">
-  <!-- //data wylotu -->
   <input
     type="date"
     (change)="setTime($event)"
     id="departureDate"
     min="{{ today }}"
   />
-  <!-- data przylotu -->
-  <!-- *ngIf="roundTrip"  -->
+
+  <!-- data wylotu2 -->
   <!-- TODO Ad max values -->
   <input
     *ngIf="blub === 'ROUND-TRIP'"
@@ -48,10 +37,8 @@
     id="arrivalDate"
     min="{{ departureDate }}"
     (change)="setTime($event)"
-  />
+  /><br />
   <!-- miejsce wylotu -->
-  <!-- [(ngModel)]="choosenDeparture" -->
-  <br />
 
   <select name="" id="" value="" (change)="changeDeparture($event)">
     <option [value]="" *ngFor="let city of opts">
@@ -77,200 +64,86 @@
         </mat-panel-title>
         <mat-panel-description> {{ totalpassengers }} </mat-panel-description>
       </mat-expansion-panel-header>
-      <div>
+      <div class="adults">
         <button
+          id="adults"
+          #adult
+          (click)="deletePassengers(adult)"
+          mat-icon-button
+          color="primary"
+          aria-label="Example icon button with a home icon"
+        >
+          <mat-icon>remove</mat-icon>
+        </button>
+
+        <h6>Adults: {{ passengers.adults }}</h6>
+
+        <button
+          id="adults"
+          #adult
+          (click)="addPassengers(adult)"
           mat-icon-button
           color="primary"
           aria-label="Example icon button with a home icon"
         >
           <mat-icon>add</mat-icon>
         </button>
-
-        <svg
-          class="svg-icon"
-          viewBox="0 0 20 20"
-          id="adults"
-          #adult
-          (click)="deletePassengers(adult)"
-        >
-          <path
-            d="M14.776,10c0,0.239-0.195,0.434-0.435,0.434H5.658c-0.239,0-0.434-0.195-0.434-0.434s0.195-0.434,0.434-0.434h8.684C14.581,9.566,14.776,9.762,14.776,10 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.691-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.382,10c0-4.071-3.312-7.381-7.382-7.381C5.929,2.619,2.619,5.93,2.619,10c0,4.07,3.311,7.382,7.381,7.382C14.07,17.383,17.382,14.07,17.382,10"
-          ></path>
-        </svg>
-
-        <h6>Adults: {{ passengers.adults }}</h6>
-
-        <svg
-          class="svg-icon"
-          viewBox="0 0 20 20"
-          id="adults"
-          #adult
-          (click)="addPassengers(adult)"
-        >
-          <path
-            d="M14.613,10c0,0.23-0.188,0.419-0.419,0.419H10.42v3.774c0,0.23-0.189,0.42-0.42,0.42s-0.419-0.189-0.419-0.42v-3.774H5.806c-0.23,0-0.419-0.189-0.419-0.419s0.189-0.419,0.419-0.419h3.775V5.806c0-0.23,0.189-0.419,0.419-0.419s0.42,0.189,0.42,0.419v3.775h3.774C14.425,9.581,14.613,9.77,14.613,10 M17.969,10c0,4.401-3.567,7.969-7.969,7.969c-4.402,0-7.969-3.567-7.969-7.969c0-4.402,3.567-7.969,7.969-7.969C14.401,2.031,17.969,5.598,17.969,10 M17.13,10c0-3.932-3.198-7.13-7.13-7.13S2.87,6.068,2.87,10c0,3.933,3.198,7.13,7.13,7.13S17.13,13.933,17.13,10"
-          ></path>
-        </svg>
       </div>
-      <div class="passenger-child">
-        <svg
-          class="svg-icon"
-          viewBox="0 0 20 20"
+
+      <div class="childs">
+        <button
           id="childs"
           #child
           (click)="deletePassengers(child)"
+          mat-icon-button
+          color="primary"
+          aria-label="Example icon button with a home icon"
         >
-          <path
-            d="M14.776,10c0,0.239-0.195,0.434-0.435,0.434H5.658c-0.239,0-0.434-0.195-0.434-0.434s0.195-0.434,0.434-0.434h8.684C14.581,9.566,14.776,9.762,14.776,10 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.691-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.382,10c0-4.071-3.312-7.381-7.382-7.381C5.929,2.619,2.619,5.93,2.619,10c0,4.07,3.311,7.382,7.381,7.382C14.07,17.383,17.382,14.07,17.382,10"
-          ></path>
-        </svg>
+          <mat-icon>remove</mat-icon>
+        </button>
+
         <h6>Childs: {{ passengers.childs }}</h6>
-        <svg
-          class="svg-icon"
-          viewBox="0 0 20 20"
+        <button
           id="childs"
           #child
           (click)="addPassengers(child)"
+          mat-icon-button
+          color="primary"
+          aria-label="Example icon button with a home icon"
         >
-          <path
-            d="M14.613,10c0,0.23-0.188,0.419-0.419,0.419H10.42v3.774c0,0.23-0.189,0.42-0.42,0.42s-0.419-0.189-0.419-0.42v-3.774H5.806c-0.23,0-0.419-0.189-0.419-0.419s0.189-0.419,0.419-0.419h3.775V5.806c0-0.23,0.189-0.419,0.419-0.419s0.42,0.189,0.42,0.419v3.775h3.774C14.425,9.581,14.613,9.77,14.613,10 M17.969,10c0,4.401-3.567,7.969-7.969,7.969c-4.402,0-7.969-3.567-7.969-7.969c0-4.402,3.567-7.969,7.969-7.969C14.401,2.031,17.969,5.598,17.969,10 M17.13,10c0-3.932-3.198-7.13-7.13-7.13S2.87,6.068,2.87,10c0,3.933,3.198,7.13,7.13,7.13S17.13,13.933,17.13,10"
-          ></path>
-        </svg>
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
-      <div class="passenger-infant">
-        <svg
-          class="svg-icon"
-          viewBox="0 0 20 20"
+
+      <div class="infants">
+        <button
           id="infants"
           #infant
           (click)="deletePassengers(infant)"
+          mat-icon-button
+          color="primary"
+          aria-label="Example icon button with a home icon"
         >
-          <path
-            d="M14.776,10c0,0.239-0.195,0.434-0.435,0.434H5.658c-0.239,0-0.434-0.195-0.434-0.434s0.195-0.434,0.434-0.434h8.684C14.581,9.566,14.776,9.762,14.776,10 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.691-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.382,10c0-4.071-3.312-7.381-7.382-7.381C5.929,2.619,2.619,5.93,2.619,10c0,4.07,3.311,7.382,7.381,7.382C14.07,17.383,17.382,14.07,17.382,10"
-          ></path>
-        </svg>
+          <mat-icon>remove</mat-icon>
+        </button>
         <h6>Infants: {{ passengers.infants }}</h6>
-        <svg
-          class="svg-icon"
-          viewBox="0 0 20 20"
+        <button
           id="infants"
           #infant
           (click)="addPassengers(infant)"
+          mat-icon-button
+          color="primary"
+          aria-label="Example icon button with a home icon"
         >
-          <path
-            d="M14.613,10c0,0.23-0.188,0.419-0.419,0.419H10.42v3.774c0,0.23-0.189,0.42-0.42,0.42s-0.419-0.189-0.419-0.42v-3.774H5.806c-0.23,0-0.419-0.189-0.419-0.419s0.189-0.419,0.419-0.419h3.775V5.806c0-0.23,0.189-0.419,0.419-0.419s0.42,0.189,0.42,0.419v3.775h3.774C14.425,9.581,14.613,9.77,14.613,10 M17.969,10c0,4.401-3.567,7.969-7.969,7.969c-4.402,0-7.969-3.567-7.969-7.969c0-4.402,3.567-7.969,7.969-7.969C14.401,2.031,17.969,5.598,17.969,10 M17.13,10c0-3.932-3.198-7.13-7.13-7.13S2.87,6.068,2.87,10c0,3.933,3.198,7.13,7.13,7.13S17.13,13.933,17.13,10"
-          ></path>
-        </svg>
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
     </mat-expansion-panel>
-    <!-- //TEST TEST TEST//TEST TEST TEST  -->
-
-    <!-- (click)="changePassengers()" -->
-    <div class="input-box" (click)="openPassengers()">
-      <h5>Passengers</h5>
-      <h6>Adults: {{ passengers.adults }}</h6>
-      <h6 *ngIf="passengers.childs > 0">Childs: {{ passengers.childs }}</h6>
-      <h6 *ngIf="passengers.infants > 0">Infants: {{ passengers.infants }}</h6>
-    </div>
-
-    <div *ngIf="isOpen">
-      <!-- <div (clickOutside)="onClickedOutside($event)" [hidden]="isShow"> -->
-      <div class="passenger-adult plusMinus">
-        <button
-          mat-icon-button
-          color="primary"
-          aria-label="Example icon button with a home icon"
-        >
-          <mat-icon>add</mat-icon>
-        </button>
-        <svg
-          class="svg-icon"
-          viewBox="0 0 20 20"
-          id="adults"
-          #adult
-          (click)="deletePassengers(adult)"
-        >
-          <path
-            d="M14.776,10c0,0.239-0.195,0.434-0.435,0.434H5.658c-0.239,0-0.434-0.195-0.434-0.434s0.195-0.434,0.434-0.434h8.684C14.581,9.566,14.776,9.762,14.776,10 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.691-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.382,10c0-4.071-3.312-7.381-7.382-7.381C5.929,2.619,2.619,5.93,2.619,10c0,4.07,3.311,7.382,7.381,7.382C14.07,17.383,17.382,14.07,17.382,10"
-          ></path>
-        </svg>
-        <h6>Adults: {{ passengers.adults }}</h6>
-        <svg
-          class="svg-icon"
-          viewBox="0 0 20 20"
-          id="adults"
-          #adult
-          (click)="addPassengers(adult)"
-        >
-          <path
-            d="M14.613,10c0,0.23-0.188,0.419-0.419,0.419H10.42v3.774c0,0.23-0.189,0.42-0.42,0.42s-0.419-0.189-0.419-0.42v-3.774H5.806c-0.23,0-0.419-0.189-0.419-0.419s0.189-0.419,0.419-0.419h3.775V5.806c0-0.23,0.189-0.419,0.419-0.419s0.42,0.189,0.42,0.419v3.775h3.774C14.425,9.581,14.613,9.77,14.613,10 M17.969,10c0,4.401-3.567,7.969-7.969,7.969c-4.402,0-7.969-3.567-7.969-7.969c0-4.402,3.567-7.969,7.969-7.969C14.401,2.031,17.969,5.598,17.969,10 M17.13,10c0-3.932-3.198-7.13-7.13-7.13S2.87,6.068,2.87,10c0,3.933,3.198,7.13,7.13,7.13S17.13,13.933,17.13,10"
-          ></path>
-        </svg>
-      </div>
-      <div class="passenger-child">
-        <svg
-          class="svg-icon"
-          viewBox="0 0 20 20"
-          id="childs"
-          #child
-          (click)="deletePassengers(child)"
-        >
-          <path
-            d="M14.776,10c0,0.239-0.195,0.434-0.435,0.434H5.658c-0.239,0-0.434-0.195-0.434-0.434s0.195-0.434,0.434-0.434h8.684C14.581,9.566,14.776,9.762,14.776,10 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.691-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.382,10c0-4.071-3.312-7.381-7.382-7.381C5.929,2.619,2.619,5.93,2.619,10c0,4.07,3.311,7.382,7.381,7.382C14.07,17.383,17.382,14.07,17.382,10"
-          ></path>
-        </svg>
-        <h6>Childs: {{ passengers.childs }}</h6>
-        <svg
-          class="svg-icon"
-          viewBox="0 0 20 20"
-          id="childs"
-          #child
-          (click)="addPassengers(child)"
-        >
-          <path
-            d="M14.613,10c0,0.23-0.188,0.419-0.419,0.419H10.42v3.774c0,0.23-0.189,0.42-0.42,0.42s-0.419-0.189-0.419-0.42v-3.774H5.806c-0.23,0-0.419-0.189-0.419-0.419s0.189-0.419,0.419-0.419h3.775V5.806c0-0.23,0.189-0.419,0.419-0.419s0.42,0.189,0.42,0.419v3.775h3.774C14.425,9.581,14.613,9.77,14.613,10 M17.969,10c0,4.401-3.567,7.969-7.969,7.969c-4.402,0-7.969-3.567-7.969-7.969c0-4.402,3.567-7.969,7.969-7.969C14.401,2.031,17.969,5.598,17.969,10 M17.13,10c0-3.932-3.198-7.13-7.13-7.13S2.87,6.068,2.87,10c0,3.933,3.198,7.13,7.13,7.13S17.13,13.933,17.13,10"
-          ></path>
-        </svg>
-      </div>
-      <div class="passenger-infant">
-        <svg
-          class="svg-icon"
-          viewBox="0 0 20 20"
-          id="infants"
-          #infant
-          (click)="deletePassengers(infant)"
-        >
-          <path
-            d="M14.776,10c0,0.239-0.195,0.434-0.435,0.434H5.658c-0.239,0-0.434-0.195-0.434-0.434s0.195-0.434,0.434-0.434h8.684C14.581,9.566,14.776,9.762,14.776,10 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.691-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.382,10c0-4.071-3.312-7.381-7.382-7.381C5.929,2.619,2.619,5.93,2.619,10c0,4.07,3.311,7.382,7.381,7.382C14.07,17.383,17.382,14.07,17.382,10"
-          ></path>
-        </svg>
-        <h6>Infants: {{ passengers.infants }}</h6>
-        <svg
-          class="svg-icon"
-          viewBox="0 0 20 20"
-          id="infants"
-          #infant
-          (click)="addPassengers(infant)"
-        >
-          <path
-            d="M14.613,10c0,0.23-0.188,0.419-0.419,0.419H10.42v3.774c0,0.23-0.189,0.42-0.42,0.42s-0.419-0.189-0.419-0.42v-3.774H5.806c-0.23,0-0.419-0.189-0.419-0.419s0.189-0.419,0.419-0.419h3.775V5.806c0-0.23,0.189-0.419,0.419-0.419s0.42,0.189,0.42,0.419v3.775h3.774C14.425,9.581,14.613,9.77,14.613,10 M17.969,10c0,4.401-3.567,7.969-7.969,7.969c-4.402,0-7.969-3.567-7.969-7.969c0-4.402,3.567-7.969,7.969-7.969C14.401,2.031,17.969,5.598,17.969,10 M17.13,10c0-3.932-3.198-7.13-7.13-7.13S2.87,6.068,2.87,10c0,3.933,3.198,7.13,7.13,7.13S17.13,13.933,17.13,10"
-          ></path>
-        </svg>
-      </div>
-      <!-- </div> -->
-    </div>
-    <a [routerLink]="[this.arrivalCity == null ? '/flight' : '/details']"
-      ><button mat-raised-button (click)="searchFlight()">Search</button></a
-    >
-    <button
-      mat-icon-button
-      color="primary"
-      aria-label="Example icon button with a home icon"
-    >
-      <mat-icon>add</mat-icon>
-    </button>
-    <!-- </div> -->
-
-    <!-- <router-outlet> </router-outlet> -->
   </mat-accordion>
+  <!-- //TEST TEST TEST//TEST TEST TEST  -->
 </div>
+<a [routerLink]="[this.arrivalCity == null ? '/flight' : '/details']"
+  ><button mat-raised-button (click)="searchFlight()">Search</button></a
+>
+
+<!-- <router-outlet> </router-outlet> -->

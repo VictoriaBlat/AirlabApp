@@ -27,7 +27,7 @@ export class FlightComponent implements OnInit {
   matButtonToggleGroup;
   toggleGroup;
   price = [];
-  planeCode;
+  planeCode: string;
   blub;
 
   bookingData = [];
@@ -55,6 +55,7 @@ export class FlightComponent implements OnInit {
   }
   changeTrip() {
     this.roundTrip = !this.roundTrip;
+    console.log(this.roundTrip);
   }
   @Output() public bookingEvent = new EventEmitter();
   setTime(event) {
@@ -150,19 +151,22 @@ export class FlightComponent implements OnInit {
     console.log('plane code:', this.planeCode);
   }
   // <------------------_CHANGING PASSANGERS START---------------->
-  changePassengers() {
-    // TODO: TOGGLE CLASS VISSIBILITY ADDING PASSENGERS
-  }
+
   deletePassengers(ev) {
-    if (this.passengers[ev.id] > 0) {
-      this.passengers[ev.id] = this.passengers[ev.id] - 1;
+    let id = ev._elementRef.nativeElement.id;
+    if (this.passengers['adults'] > 1) {
+      if (this.passengers[id] > 0) {
+        this.passengers[id] = this.passengers[id] - 1;
+      }
     }
+    this.countTotalPassangers();
   }
   addPassengers(ev) {
-    this.countTotalPassangers();
+    let id = ev._elementRef.nativeElement.id;
 
     if (this.totalpassengers < 10) {
-      this.passengers[ev.id] = this.passengers[ev.id] + 1;
+      this.passengers[id] = this.passengers[id] + 1;
+      console.log(this.passengers[id]);
     }
     this.countTotalPassangers();
   }

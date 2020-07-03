@@ -26,6 +26,7 @@ import { ChooseSeatsDialogComponent } from './choose-seats-dialog/choose-seats-d
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatExpansionModule,
     MatTooltipModule,
     MatIconModule,
+    MatCardModule,
   ],
   providers: [
     {
