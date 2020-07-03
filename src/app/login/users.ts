@@ -76,4 +76,11 @@ export const users = [
     firstName: 'John',
     lastname: 'Jessen',
   },
+  {
+    id: 11,
+    email: 'test',
+    password: 1234,
+    firstName: 'John',
+    lastname: 'Jessen',
+  },
 ];

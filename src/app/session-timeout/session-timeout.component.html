@@ -1,1 +1,9 @@
-<p>session-timeout works!</p>
+<h2 mat-dialog-title>Your session has ended due to inactivity.</h2>
+<mat-dialog-content>
+  Your session is over, please start again!</mat-dialog-content
+>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="refreshPage()">
+    RESTART BOOKING
+  </button>
+</mat-dialog-actions>

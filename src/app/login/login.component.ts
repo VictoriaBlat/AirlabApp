@@ -11,10 +11,16 @@ import { users } from './users';
 export class LoginComponent implements OnInit {
   public comUser = '';
   public loggedIn = false;
-  user;
+  user = localStorage.getItem('userLogedIn');
+  userName;
   constructor(private router: Router, private _location: Location) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.user) {
+      let data = JSON.parse(localStorage.getItem('userLogedIn'));
+      this.userName = data.firstName;
+    }
+  }
 
   log(email, password) {
     for (let i = 0; i < users.length; i++) {
@@ -27,6 +33,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userLogedIn', JSON.stringify(users[i]));
         localStorage.setItem('loggedIn', JSON.stringify(this.loggedIn));
         this.user = JSON.parse(localStorage.getItem('userLogedIn'));
+        let data = JSON.parse(localStorage.getItem('userLogedIn'));
+        console.log(JSON.parse(localStorage.getItem('userLogedIn')));
+        console.log(data.firstName);
+        this.userName = data.firstName;
         console.log('user logged:', this.user);
         this._location.back();
         // this.router.navigate(['/details']);
@@ -37,5 +47,9 @@ export class LoginComponent implements OnInit {
         this.comUser = 'błędne dane lub uzytkownik nie istnieje';
       }
     }
+  }
+  logOut() {
+    localStorage.clear();
+    window.location.reload();
   }
 }

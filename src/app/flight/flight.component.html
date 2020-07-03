@@ -157,11 +157,9 @@
     </div>
     <!-- </div> -->
   </div>
-  <!-- <a routerLink="/log"> <button (click)="saving()">Logowanie</button> </a> -->
   <a [routerLink]="[this.arrivalCity == null ? '/flight' : '/details']"
     ><button mat-raised-button (click)="searchFlight()">Search</button></a
   >
-  <button mat-raised-button (click)="openDialog()">open Dialog</button>
 </div>
 
 <!-- <router-outlet> </router-outlet> -->

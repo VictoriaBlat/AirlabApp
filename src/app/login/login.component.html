@@ -1,16 +1,3 @@
-<h1>Login FlyHigh</h1>
-
-<!-- MAT INPUT -->
-<mat-form-field appearance="outline">
-  <mat-label>E-MAIL</mat-label>
-  <input matInput #email />
-</mat-form-field>
-<mat-form-field appearance="outline">
-  <mat-label>PASSWORD</mat-label>
-  <input matInput #password />
-</mat-form-field>
-<!-- MAT INPUT -->
-
 <!-- <div class="wrapper">
   <label for="mail">E-Mail Address</label>
   <input id="mail" type="text" placeholder="e-mail" #email />
@@ -19,13 +6,35 @@
   <input type="text" placeholder="Password" #password />
   <h5>Do not remember your password?</h5> -->
 <!-- TODO: add coditional routing routerLink="/passenger-details" -->
-<button mat-raised-button (click)="log(email, password)">
-  Zaloguj się
-</button>
-{{ comUser }}
-<!-- </div> -->
+<!-- MAT INPUT -->
+<div *ngIf="user == null; else isLogged">
+  <h1>Login FlyHigh</h1>
+  <mat-form-field appearance="outline">
+    <mat-label>E-MAIL</mat-label>
+    <input matInput #email />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>PASSWORD</mat-label>
+    <input matInput #password />
+  </mat-form-field>
+  <!-- MAT INPUT -->
+  <button mat-raised-button (click)="log(email, password)">
+    LOG IN
+  </button>
+  {{ comUser }}
+  <!-- </div> -->
 
-<h3>Register</h3>
-<h5>Easy and fast</h5>
-
+  <h2>Do not have an account yet?</h2>
+  <button mat-raised-button>
+    Register - easy and fast
+  </button>
+  <!-- <h2>Register</h2> -->
+  <h5></h5>
+</div>
+<ng-template #isLogged>
+  <h2>Hello {{ userName }}</h2>
+  <button mat-raised-button (click)="logOut()">
+    Logout
+  </button>
+</ng-template>
 <router-outlet> </router-outlet>
