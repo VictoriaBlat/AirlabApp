@@ -21,6 +21,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogSearchComponent } from './dialog-search/dialog-search.component';
 import { SessionTimeoutComponent } from './session-timeout/session-timeout.component';
+import { MatSelectModule } from '@angular/material/select';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +49,7 @@ import { SessionTimeoutComponent } from './session-timeout/session-timeout.compo
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
+    MatSelectModule,
   ],
   providers: [
     {

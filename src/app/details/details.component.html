@@ -2,8 +2,39 @@
 <h3>
   Departure: {{ bookingData.departureCity }}
   {{ bookingData.departureDate }} Departure Time:
+  {{ bookingData.departureTime1 }}
 </h3>
-<h3>Arrival: {{ bookingData.arrivalCity }} {{ bookingData.arrivalDate }}</h3>
+<i class="material-icons">flight_land</i>
+<h3>Arrival: {{ bookingData.arrivalCity }}</h3>
+<h3>Price {{ bookingData.price[0] }}</h3>
+<div *ngIf="bookingData.roundTrip === true">
+  <i class="material-icons">flight_takeoff</i>
+  <h3>
+    Departure: {{ bookingData.arrivalCity }}
+    {{ bookingData.departureDate }} Departure Time:
+    {{ bookingData.departureTime2 }}
+  </h3>
+  <i class="material-icons">flight_land</i>
+  <h3>
+    Arrival: {{ bookingData.departureCity }} {{ bookingData.arrivalDate }}
+  </h3>
+  <h3>Price: {{ bookingData.price[1] }}</h3>
+</div>
+<h2>Total price</h2>
+
+<h4>mat-select</h4>
+<mat-form-field appearance="fill">
+  <mat-label>EURO</mat-label>
+  <mat-select [(ngModel)]="selectedCar">
+    <mat-option value="USD">USD</mat-option>
+    <mat-option value="PLN">PLN</mat-option>
+    <mat-option value="EUR">EUR</mat-option>
+  </mat-select>
+</mat-form-field>
+{{ selectedCar }}
+
+<button (click)="changeCurrency()">SPRAWDZ</button>
+
 <h3>Number of passengers: {{ numberOfPassengers }}</h3>
 <h3>Seats choosen: {{ bookedSeats.length }}</h3>
 <h3 *ngIf="left > 0">Choose more {{ left }}</h3>

@@ -14,6 +14,10 @@ export class DetailsComponent implements OnInit {
   numberOfPassengers: number;
   left;
   departureTimeA;
+  totalPriceEUR;
+  totalPricePLN;
+  totalPriceUSD;
+  selectedCar;
 
   constructor() {}
 
@@ -42,5 +46,28 @@ export class DetailsComponent implements OnInit {
       alert('You must choose seats for all passengers');
     }
     localStorage.setItem('seats', JSON.stringify(this.bookedSeats));
+  }
+  getPln() {
+    fetch('https://api.nbp.pl/api/exchangerates/rates/a/eur/?format=json')
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.totalPricePLN = (this.totalPriceEUR / data.rates[0].mid).toFixed(
+          0
+        );
+      });
+  }
+
+  countUsd() {
+    fetch('https://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json')
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.totalPriceUSD = (this.totalPricePLN * data.rates[0].mid).toFixed(
+          0
+        );
+      });
+  }
+  changeCurrency() {
+    console.log('selectedCar', this.selectedCar);
+    console.log('fired');
   }
 }

@@ -19,12 +19,12 @@
 <!-- </p> -->
 <!-- MATERIAL TOGGLE START -->
 
-<mat-button-toggle-group #toggleGroup="matButtonToggleGroup">
+<mat-button-toggle-group [(ngModel)]="blub" #toggleGroup="matButtonToggleGroup">
   <mat-button-toggle value="one-way">ONE-WAY</mat-button-toggle>
   <mat-button-toggle value="ROUND-TRIP"
     >ROUND TRIP</mat-button-toggle
   > </mat-button-toggle-group
->{{ toggleGroup.value }}
+>{{ blub }}
 
 <!-- MATERIAL TOGGLE END -->
 <h4 *ngIf="roundTrip; else oneWay">ROUND TRIP</h4>

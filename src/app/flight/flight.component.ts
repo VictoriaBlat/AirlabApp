@@ -28,6 +28,7 @@ export class FlightComponent implements OnInit {
   toggleGroup;
   price = [];
   planeCode;
+  blub;
 
   bookingData = [];
   passengers = { adults: 1, childs: 0, infants: 0 };
