@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { connectionsInfo } from '../connectionsInfo';
+import { connectionsInfo, extraCosts } from '../connectionsInfo';
 import { ChooseSeatsDialogComponent } from '../choose-seats-dialog/choose-seats-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class DetailsComponent implements OnInit {
   info = connectionsInfo;
+  extras = extraCosts;
   bookingData;
   isbooked = false;
   bookedSeats = [];
@@ -19,13 +20,19 @@ export class DetailsComponent implements OnInit {
   totalPriceEUR;
   totalPricePLN;
   totalPriceUSD;
-  selectedCar;
+  selectedCurrency;
+  firstFlightSinglePrice;
+  euro = '€';
 
   constructor(public chooseSeats: MatDialog) {}
 
   ngOnInit(): void {
     this.bookingData = JSON.parse(localStorage.getItem('booking'))[0];
     this.countPassengers();
+    this.totalPriceEUR = this.bookingData.basePrice;
+    console.log(this.totalPriceEUR);
+    this.getPln();
+    this.countUsd();
   }
   bookSeat($event, seatNumber) {
     console.log('booked seats bevore:', this.bookedSeats);
@@ -54,7 +61,7 @@ export class DetailsComponent implements OnInit {
     fetch('https://api.nbp.pl/api/exchangerates/rates/a/eur/?format=json')
       .then((resp) => resp.json())
       .then((data) => {
-        this.totalPricePLN = (this.totalPriceEUR / data.rates[0].mid).toFixed(
+        this.totalPricePLN = (this.totalPriceEUR * data.rates[0].mid).toFixed(
           0
         );
       });
@@ -64,7 +71,7 @@ export class DetailsComponent implements OnInit {
     fetch('https://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json')
       .then((resp) => resp.json())
       .then((data) => {
-        this.totalPriceUSD = (this.totalPricePLN * data.rates[0].mid).toFixed(
+        this.totalPriceUSD = (this.totalPricePLN / data.rates[0].mid).toFixed(
           0
         );
       });
@@ -73,7 +80,7 @@ export class DetailsComponent implements OnInit {
     this.getPln();
     this.countUsd();
     console.log(this.totalPriceEUR, this.totalPricePLN, this.totalPriceUSD);
-    console.log('selectedCar', this.selectedCar);
+    console.log('selectedCar', this.selectedCurrency);
     console.log('fired');
   }
 }

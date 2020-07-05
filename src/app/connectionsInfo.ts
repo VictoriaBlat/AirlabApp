@@ -63,3 +63,9 @@ export const connectionsInfo = [
     ],
   },
 ];
+
+export const extraCosts = {
+  basic: 0,
+  plus: 15,
+  premium: 25,
+};

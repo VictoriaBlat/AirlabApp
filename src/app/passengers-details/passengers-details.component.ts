@@ -18,35 +18,38 @@ export class PassengersDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookingData = JSON.parse(localStorage.getItem('booking'))[0];
-    this.totalPriceEUR = this.bookingData.basePrice;
-    console.log(this.totalPriceEUR);
-    this.getPln();
-    this.countUsd();
+
+    // moved to details component
+    // this.totalPriceEUR = this.bookingData.basePrice;
+    // console.log(this.totalPriceEUR);
+    // this.getPln();
+    // this.countUsd();
     for (let i = 0; i < this.bookingData.numberOfPassengers; i++) {
       this.passengersData.push({ name: '', surname: '', email: '' });
     }
     console.log(this.passengersData);
   }
 
-  getPln() {
-    fetch('https://api.nbp.pl/api/exchangerates/rates/a/eur/?format=json')
-      .then((resp) => resp.json())
-      .then((data) => {
-        this.totalPricePLN = (this.totalPriceEUR * data.rates[0].mid).toFixed(
-          0
-        );
-      });
-  }
+  // MOVED TO DETAILS COMPONENT
+  // getPln() {
+  //   fetch('https://api.nbp.pl/api/exchangerates/rates/a/eur/?format=json')
+  //     .then((resp) => resp.json())
+  //     .then((data) => {
+  //       this.totalPricePLN = (this.totalPriceEUR * data.rates[0].mid).toFixed(
+  //         0
+  //       );
+  //     });
+  // }
 
-  countUsd() {
-    fetch('https://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json')
-      .then((resp) => resp.json())
-      .then((data) => {
-        this.totalPriceUSD = (this.totalPricePLN / data.rates[0].mid).toFixed(
-          0
-        );
-      });
-  }
+  // countUsd() {
+  //   fetch('https://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json')
+  //     .then((resp) => resp.json())
+  //     .then((data) => {
+  //       this.totalPriceUSD = (this.totalPricePLN / data.rates[0].mid).toFixed(
+  //         0
+  //       );
+  //     });
+  // }
 
   submitingInfo() {
     console.log(this.passengersData);

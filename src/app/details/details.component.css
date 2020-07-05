@@ -14,7 +14,7 @@ h5 {
   fill: white;
 }
 .flight-card {
-  max-width: 40vw;
+  min-width: 200px;
 }
 
 .header-card {

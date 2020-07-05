@@ -28,7 +28,6 @@ export class FlightComponent implements OnInit {
   toggleGroup;
   price = [];
   planeCode: string;
-  blub;
   totalPrice: number;
 
   bookingData = [];
@@ -50,6 +49,8 @@ export class FlightComponent implements OnInit {
   }
   ngOnInit() {
     let cities = this.opts.forEach((city) => {});
+    console.log(this.roundTrip);
+    this.roundTrip = true;
   }
   openPassengers() {
     this.isOpen = !this.isOpen;
@@ -155,9 +156,13 @@ export class FlightComponent implements OnInit {
 
   deletePassengers(ev) {
     let id = ev._elementRef.nativeElement.id;
-    if (this.passengers['adults'] > 1) {
+    console.log('id type', id);
+    if (this.passengers['adults'] >= 1) {
+      console.log('adults are:', this.passengers['adults']);
       if (this.passengers[id] > 0) {
+        console.log('how many before:', this.passengers[id]);
         this.passengers[id] = this.passengers[id] - 1;
+        console.log('how many after:', this.passengers[id]);
       }
     }
     this.countTotalPassangers();
@@ -165,7 +170,7 @@ export class FlightComponent implements OnInit {
   addPassengers(ev) {
     let id = ev._elementRef.nativeElement.id;
 
-    if (this.totalpassengers < 10) {
+    if (this.totalpassengers < 9) {
       this.passengers[id] = this.passengers[id] + 1;
       console.log(this.passengers[id]);
     }
