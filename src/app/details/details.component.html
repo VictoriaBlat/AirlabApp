@@ -68,7 +68,11 @@
 
 <h5>CHECKED-IN BAGGAGE</h5>
 <div class="option-cards">
-  <mat-card class="example-card">
+  <mat-card
+    class="example-card"
+    (click)="chooseOption($event, 'basic')"
+    [class.choosen]="option == 'basic'"
+  >
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>BASIC</mat-card-title>
@@ -100,7 +104,11 @@
   </mat-card>
 </div>
 <div class="option-cards">
-  <mat-card class="example-card">
+  <mat-card
+    class="example-card"
+    (click)="chooseOption($event, 'plus')"
+    [class.choosen]="option == 'plus'"
+  >
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>PLUS</mat-card-title>
@@ -127,11 +135,11 @@
     per passenger
     <mat-card-actions>
       <button mat-button>
-        {{ extras.plus }}
+        {{ (extras.plus * selectedCurrency).toFixed(0) }}
         {{
-          selectedCurrency === totalPriceUSD
+          selectedCurrency == usd
             ? "USD"
-            : selectedCurrency === totalPricePLN
+            : selectedCurrency == pln
             ? "PLN"
             : "EUR"
         }}
@@ -152,17 +160,17 @@
   events, COVID19)
 </h6>
 <!-- <h2>{{ totalPriceEUR }}</h2> -->
-<h2>{{ selectedCurrency }}</h2>
+<h2>{{ selectedCurrency * totalPriceEUR }}</h2>
 <h2 *ngIf="selectedCurrency == null">{{ totalPriceEUR }}</h2>
-<mat-form-field appearance="fill" (change)="changeCurrency()">
+<mat-form-field appearance="fill">
   <mat-label>EURO</mat-label>
-  <mat-select [(ngModel)]="selectedCurrency" (click)="changeCurrency()">
-    <mat-option [value]="totalPriceUSD">USD</mat-option>
-    <mat-option [value]="totalPricePLN">PLN</mat-option>
-    <mat-option [value]="totalPriceEUR">EUR</mat-option>
+  <mat-select [(ngModel)]="selectedCurrency" (change)="changeCurrency()">
+    <mat-option id="raz" value="{{ usd }}">USD</mat-option>
+    <mat-option id="dwa" value="{{ pln }}">PLN</mat-option>
+    <mat-option id="trzy" value="{{ 1 }}">EUR</mat-option>
   </mat-select>
 </mat-form-field>
-
+<!-- [value]="totalPriceEUR.toFixed(0)" -->
 <!-- //////////////EXTRAS END -->
 
 <h3>Number of passengers: {{ numberOfPassengers }}</h3>

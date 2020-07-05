@@ -18,22 +18,46 @@ export class DetailsComponent implements OnInit {
   left;
   departureTimeA;
   totalPriceEUR;
+  convertedPrice;
   totalPricePLN;
   totalPriceUSD;
-  selectedCurrency;
+  selectedCurrency = 1;
   firstFlightSinglePrice;
   euro = '€';
+  option = 'basic';
+  extrasTotal = 0;
+
+  /// Trying it out the other way
+  pln;
+  usd;
 
   constructor(public chooseSeats: MatDialog) {}
 
   ngOnInit(): void {
+    this.getCurrencies();
     this.bookingData = JSON.parse(localStorage.getItem('booking'))[0];
     this.countPassengers();
     this.totalPriceEUR = this.bookingData.basePrice;
-    console.log(this.totalPriceEUR);
-    this.getPln();
-    this.countUsd();
   }
+  chooseOption(ev, id) {
+    this.totalPriceEUR = this.bookingData.basePrice;
+
+    console.log(id);
+    console.log(typeof id);
+    this.option = id;
+    this.extrasTotal =
+      this.numberOfPassengers *
+      (this.option === 'basic'
+        ? 0
+        : this.option === 'plus'
+        ? 15
+        : this.option === 'all-in'
+        ? 25
+        : 0);
+    console.log(this.extrasTotal);
+    this.totalPriceEUR = this.totalPriceEUR + this.extrasTotal;
+  }
+
   bookSeat($event, seatNumber) {
     console.log('booked seats bevore:', this.bookedSeats);
     if (this.bookedSeats.includes(seatNumber.id)) {
@@ -53,34 +77,21 @@ export class DetailsComponent implements OnInit {
   goToDetails() {
     if (this.bookedSeats.length !== this.numberOfPassengers) {
       this.chooseSeats.open(ChooseSeatsDialogComponent);
-      // alert('You must choose seats for all passengers');
     }
     localStorage.setItem('seats', JSON.stringify(this.bookedSeats));
   }
-  getPln() {
-    fetch('https://api.nbp.pl/api/exchangerates/rates/a/eur/?format=json')
+  getCurrencies() {
+    fetch('https://api.exchangeratesapi.io/latest')
       .then((resp) => resp.json())
       .then((data) => {
-        this.totalPricePLN = (this.totalPriceEUR * data.rates[0].mid).toFixed(
-          0
-        );
+        this.pln = data.rates.PLN;
+        this.usd = data.rates.USD;
+        console.log(this.pln, this.usd);
       });
   }
 
-  countUsd() {
-    fetch('https://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json')
-      .then((resp) => resp.json())
-      .then((data) => {
-        this.totalPriceUSD = (this.totalPricePLN / data.rates[0].mid).toFixed(
-          0
-        );
-      });
-  }
   changeCurrency() {
-    this.getPln();
-    this.countUsd();
-    console.log(this.totalPriceEUR, this.totalPricePLN, this.totalPriceUSD);
-    console.log('selectedCar', this.selectedCurrency);
+    console.log();
     console.log('fired');
   }
 }

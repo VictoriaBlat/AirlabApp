@@ -23,3 +23,7 @@ h5 {
 .view_inline {
   display: inline;
 }
+.choosen {
+  background-color: #3540a5;
+  color: white;
+}
