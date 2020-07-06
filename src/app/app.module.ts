@@ -27,6 +27,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { MatCardModule } from '@angular/material/card';
     MatTooltipModule,
     MatIconModule,
     MatCardModule,
+    MatAutocompleteModule,
   ],
   providers: [
     {

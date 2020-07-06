@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'flyHigh';
+
   constructor() {}
 
   bookingData;
@@ -16,10 +17,7 @@ export class AppComponent implements OnInit {
     this.isLogged = JSON.parse(localStorage.getItem('loggedIn'));
     console.log('is it logged', this.isLogged);
   }
-  saveBookingSearch($event) {
-    this.bookingData = $event;
-    console.log(this.bookingData);
-  }
+
   countPassengers() {
     let { adults, childs, infants } = this.bookingData.passengers;
     this.cart = adults + childs + infants;

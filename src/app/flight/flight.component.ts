@@ -49,7 +49,7 @@ export class FlightComponent implements OnInit {
   }
   ngOnInit() {
     let cities = this.opts.forEach((city) => {});
-    console.log(this.roundTrip);
+
     this.roundTrip = true;
   }
   openPassengers() {
@@ -57,7 +57,6 @@ export class FlightComponent implements OnInit {
   }
   changeTrip() {
     this.roundTrip = !this.roundTrip;
-    console.log(this.roundTrip);
   }
   @Output() public bookingEvent = new EventEmitter();
   setTime(event) {

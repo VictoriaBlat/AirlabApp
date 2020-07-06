@@ -1,5 +1,22 @@
-<h5>Already have an account?</h5>
-<a routerLink="/log"><button>Login!</button></a>
+<div *ngIf="isTheUserNotLogged">
+  <h5>Already have an account?</h5>
+  <a routerLink="/log"><button>Login!</button></a>
+</div>
+
+<mat-form-field appearance="outline">
+  <mat-label>FIRST NAME</mat-label>
+  <input
+    matInput
+    [matAutocomplete]="auto"
+    placeholder="{{ userLogedIn.firstName }}"
+  />
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option value="{{ userLogedIn.firstName }}">
+      {{ userLogedIn.firstName }}</mat-option
+    >
+  </mat-autocomplete>
+</mat-form-field>
+
 <div class="passengerInfo">
   <h5>PASSENGER (ADULT)</h5>
   <div
@@ -10,8 +27,33 @@
   >
     <mat-form-field appearance="outline">
       <mat-label>FIRST NAME</mat-label>
-      <input matInput #first [(ngModel)]="passengersData[x].name" />
+      <input
+        id="name"
+        name="name"
+        class="form-control"
+        matInput
+        #name
+        [(ngModel)]="passengersData[x].name"
+        required
+        minlength="3"
+        appForbiddenName="bob"
+      />
+      <div
+        *ngIf="name.invalid && (name.dirty || name.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="name.errors.required">
+          <h2>Name is required.</h2>
+        </div>
+        <div *ngIf="name.errors.minlength">
+          Name must be at least 4 characters long.
+        </div>
+        <div *ngIf="name.errors.forbiddenName">
+          Name cannot be Bob.
+        </div>
+      </div>
     </mat-form-field>
+
     <mat-form-field appearance="outline">
       <mat-label>LAST NAME </mat-label>
       <input matInput #last [(ngModel)]="passengersData[x].surname" />
@@ -21,33 +63,6 @@
       <input matInput #mail [(ngModel)]="passengersData[x].email" />
     </mat-form-field>
   </div>
+
   <button (click)="submitingInfo()">Check it out</button>
-
-  <!-- <h5>CHECKED-IN BAGGAGE</h5>
-  <h6>PLEASE SELECT</h6>
-  <h5>CABIN BAGGAGE</h5>
-  <h6>Free carry-on bag</h6>
-  <p>
-    40 x 30 x 20 cm <br />
-    Included
-  </p>
-  <h5>FLIGHT FLex</h5>
-  <h6>
-    A helping hand for travel uncertainties (e.g. change of plans, unexpected
-    events, COVID19)
-  </h6>
-  <!-- <h2>{{ totalPriceEUR }}</h2> -->
-  <!-- <h2>{{ selectedCar }}</h2>
-  <h2 *ngIf="selectedCar == null">{{ totalPriceEUR }}</h2>
-  <mat-form-field appearance="fill">
-    <mat-label>EURO</mat-label>
-    <mat-select [(ngModel)]="selectedCar">
-      <mat-option [value]="totalPriceUSD">USD</mat-option>
-      <mat-option [value]="totalPricePLN">PLN</mat-option>
-      <mat-option [value]="totalPriceEUR">EUR</mat-option>
-    </mat-select>
-  </mat-form-field> -->
-  -->
-
-  <!-- <button (click)="changeCurrency()">SPRAWDZ</button> -->
 </div>
