@@ -39,21 +39,32 @@
     min="{{ departureDate }}"
     (change)="setTime($event)"
   /><br />
-  <!-- miejsce wylotu -->
+  <!-- 
+  TEST -->
+  <!-- TEST -->
 
-  <select name="" id="" value="" (change)="changeDeparture($event)">
-    <option [value]="" *ngFor="let city of opts">
-      {{ city.city }}
-    </option>
-  </select>
+  <!-- miejsce wylotu -->
+  <mat-form-field appearance="fill">
+    <mat-label>Departure place</mat-label>
+    <!--  -->
+    <mat-select (selectionChange)="changeDeparture($event)">
+      <mat-option *ngFor="let city of opts" [value]="city">
+        {{ city.city }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <!-- miejsce przylotu -->
 
   <div *ngIf="arrivalOptions">
-    <select name="" id="" value="" (change)="changeArrivalCity($event)">
-      <option [value]="city.city" *ngFor="let city of arrivalOptions">
-        {{ city.city }}
-      </option>
-    </select>
+    <mat-form-field appearance="fill">
+      <mat-label>Arrival </mat-label>
+      <!--  -->
+      <mat-select (selectionChange)="changeArrivalCity($event)">
+        <mat-option *ngFor="let city of arrivalOptions" [value]="city.city">
+          {{ city.city }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <h3>{{ missingData1 }}</h3>
   <!-- //TEST TEST TEST//TEST TEST TEST  -->

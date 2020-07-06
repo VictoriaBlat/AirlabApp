@@ -30,6 +30,12 @@ export class FlightComponent implements OnInit {
   planeCode: string;
   totalPrice: number;
 
+  foods = [
+    { value: 'steak-0', viewValue: 'Steak' },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' },
+  ];
+
   bookingData = [];
   passengers = { adults: 1, childs: 0, infants: 0 };
   totalpassengers = 1;
@@ -64,7 +70,7 @@ export class FlightComponent implements OnInit {
   }
 
   changeDeparture(event) {
-    this.departureCity = event.target.value;
+    this.departureCity = event.value.city;
     for (let i = 0; i < this.opts.length; i++) {
       if (this.opts[i].city === this.departureCity) {
         this.arrivalOptions = this.opts[i].value;
@@ -72,7 +78,8 @@ export class FlightComponent implements OnInit {
     }
   }
   changeArrivalCity(event) {
-    this.arrivalCity = event.target.value;
+    this.arrivalCity = event.value;
+    console.log(this.arrivalCity);
     //move the following part to details component coditions
     let aCode;
     this.opts.forEach((city) => {
