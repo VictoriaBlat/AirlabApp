@@ -15,21 +15,14 @@ export class DetailsComponent implements OnInit {
   isbooked = false;
   bookedSeats = [];
   numberOfPassengers: number;
-  left;
-  departureTimeA;
-  totalPriceEUR;
-  convertedPrice;
-  totalPricePLN;
-  totalPriceUSD;
+  seatsLeft: number;
+  totalPriceEUR: number;
   selectedCurrency = 1;
-  firstFlightSinglePrice;
   euro = '€';
   option = 'basic';
   extrasTotal = 0;
-
-  /// Trying it out the other way
-  pln;
-  usd;
+  pln: number;
+  usd: number;
 
   constructor(public chooseSeats: MatDialog) {}
 
@@ -39,11 +32,16 @@ export class DetailsComponent implements OnInit {
     this.countPassengers();
     this.totalPriceEUR = this.bookingData.basePrice;
   }
-  chooseOption(ev, id) {
+  getCurrencies() {
+    fetch('https://api.exchangeratesapi.io/latest')
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.pln = data.rates.PLN;
+        this.usd = data.rates.USD;
+      });
+  }
+  chooseOption(id) {
     this.totalPriceEUR = this.bookingData.basePrice;
-
-    console.log(id);
-    console.log(typeof id);
     this.option = id;
     this.extrasTotal =
       this.numberOfPassengers *
@@ -51,7 +49,7 @@ export class DetailsComponent implements OnInit {
         ? 0
         : this.option === 'plus'
         ? 15
-        : this.option === 'all-in'
+        : this.option === 'premium'
         ? 25
         : 0);
     console.log(this.extrasTotal);
@@ -67,31 +65,17 @@ export class DetailsComponent implements OnInit {
     } else if (this.numberOfPassengers > this.bookedSeats.length) {
       this.bookedSeats.push(seatNumber.id);
     }
-    this.left = this.numberOfPassengers - this.bookedSeats.length;
+    this.seatsLeft = this.numberOfPassengers - this.bookedSeats.length;
   }
   countPassengers() {
     let { adults, childs, infants } = this.bookingData.passengers;
     this.numberOfPassengers = adults + childs + infants;
-    this.left = this.numberOfPassengers;
+    this.seatsLeft = this.numberOfPassengers;
   }
   goToDetails() {
     if (this.bookedSeats.length !== this.numberOfPassengers) {
       this.chooseSeats.open(ChooseSeatsDialogComponent);
     }
     localStorage.setItem('seats', JSON.stringify(this.bookedSeats));
-  }
-  getCurrencies() {
-    fetch('https://api.exchangeratesapi.io/latest')
-      .then((resp) => resp.json())
-      .then((data) => {
-        this.pln = data.rates.PLN;
-        this.usd = data.rates.USD;
-        console.log(this.pln, this.usd);
-      });
-  }
-
-  changeCurrency() {
-    console.log();
-    console.log('fired');
   }
 }
