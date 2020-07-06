@@ -28,6 +28,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ChooseSeatsComponent } from './choose-seats/choose-seats.component';
+import { PlaneBInternationalComponent } from './choose-seats/plane-b-international/plane-b-international.component';
+import { PlaneCContinentalComponent } from './choose-seats/plane-c-continental/plane-c-continental.component';
+import { PlaneADomesticComponent } from './choose-seats/plane-a-domestic/plane-a-domestic.component';
+import { AddMoreDialogComponent } from './add-more-dialog/add-more-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     DialogSearchComponent,
     SessionTimeoutComponent,
     ChooseSeatsDialogComponent,
+    ChooseSeatsComponent,
+    PlaneBInternationalComponent,
+    PlaneCContinentalComponent,
+    PlaneADomesticComponent,
+    AddMoreDialogComponent,
   ],
   entryComponents: [DialogSearchComponent],
   imports: [

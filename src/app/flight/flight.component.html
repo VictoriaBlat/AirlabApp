@@ -1,15 +1,22 @@
 <h1>PURCHASE A TICKET</h1>
 <div class="content-wrapper">
-  <!-- DATE PICKER MATERIAL -->
-  <!-- <mat-form-field>
-  <input matInput [matDatepicker]="myDatePicker" />
-  <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
-  <mat-datepicker #myDatePicker></mat-datepicker>
-</mat-form-field> -->
+  <!-- DATE PICKER MATERIAL  -->
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      (dateChange)="biedronka($event)"
+      id="koza"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
   <!-- DATE PICKER MATERIAL -->
 
   <!-- MATERIAL TOGGLE START -->
   <!-- [(ngModel)]="blub" -->
+  <br />
   <mat-button-toggle-group
     #toggleGroup="matButtonToggleGroup"
     (change)="changeTrip()"

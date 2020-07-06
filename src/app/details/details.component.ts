@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { connectionsInfo, extraCosts } from '../connectionsInfo';
-import { ChooseSeatsDialogComponent } from '../choose-seats-dialog/choose-seats-dialog.component';
+import { AddMoreDialogComponent } from '../add-more-dialog/add-more-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -12,10 +12,7 @@ export class DetailsComponent implements OnInit {
   info = connectionsInfo;
   extras = extraCosts;
   bookingData;
-  isbooked = false;
-  bookedSeats = [];
   numberOfPassengers: number;
-  seatsLeft: number;
   totalPriceEUR: number;
   selectedCurrency = 1;
   euro = '€';
@@ -24,7 +21,7 @@ export class DetailsComponent implements OnInit {
   pln: number;
   usd: number;
 
-  constructor(public chooseSeats: MatDialog) {}
+  constructor(public buyMore: MatDialog) {}
 
   ngOnInit(): void {
     this.getCurrencies();
@@ -56,26 +53,13 @@ export class DetailsComponent implements OnInit {
     this.totalPriceEUR = this.totalPriceEUR + this.extrasTotal;
   }
 
-  bookSeat($event, seatNumber) {
-    console.log('booked seats bevore:', this.bookedSeats);
-    if (this.bookedSeats.includes(seatNumber.id)) {
-      this.bookedSeats = this.bookedSeats.filter((item) => {
-        return item !== seatNumber.id;
-      });
-    } else if (this.numberOfPassengers > this.bookedSeats.length) {
-      this.bookedSeats.push(seatNumber.id);
-    }
-    this.seatsLeft = this.numberOfPassengers - this.bookedSeats.length;
-  }
   countPassengers() {
     let { adults, childs, infants } = this.bookingData.passengers;
     this.numberOfPassengers = adults + childs + infants;
-    this.seatsLeft = this.numberOfPassengers;
   }
   goToDetails() {
-    if (this.bookedSeats.length !== this.numberOfPassengers) {
-      this.chooseSeats.open(ChooseSeatsDialogComponent);
+    if (this.option === 'basic') {
+      this.buyMore.open(AddMoreDialogComponent);
     }
-    localStorage.setItem('seats', JSON.stringify(this.bookedSeats));
   }
 }

@@ -29,7 +29,7 @@ export class FlightComponent implements OnInit {
   price = [];
   planeCode: string;
   totalPrice: number;
-
+  //DELETE later!!!!!!
   foods = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
@@ -50,6 +50,10 @@ export class FlightComponent implements OnInit {
   sessionPassed() {
     this.dialog2.open(SessionTimeoutComponent);
   }
+  biedronka(ev) {
+    console.log('fired');
+    console.log(ev.value);
+  }
   openDialog() {
     this.dialog1.open(DialogSearchComponent);
   }
@@ -66,6 +70,7 @@ export class FlightComponent implements OnInit {
   }
   @Output() public bookingEvent = new EventEmitter();
   setTime(event) {
+    console.log(event);
     this[event.target.id] = event.target.value;
   }
 

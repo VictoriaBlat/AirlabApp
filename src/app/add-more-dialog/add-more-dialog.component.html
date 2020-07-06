@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>No checked in luggage choosen</h2>
+<mat-dialog-content>
+  Are you sure that you do not need checked-in luggage?</mat-dialog-content
+>
+
+<mat-dialog-actions>
+  <a routerLink="/passengers-details">
+    <button mat-button mat-dialog-close>No thanks</button>
+  </a>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
+    Yes, I need an extra bag
+  </button>
+</mat-dialog-actions>
