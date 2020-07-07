@@ -28,6 +28,8 @@
     <mat-form-field class="wrapper-child" appearance="fill">
       <mat-label>Choose departure date</mat-label>
       <input
+        [min]="today"
+        [max]="maxDepartureDate"
         matInput
         [matDatepicker]="picker"
         (dateChange)="biedronka($event)"
@@ -46,9 +48,10 @@
       <mat-label>Choose return date</mat-label>
       <input
         matInput
+        id="arrivalDate"
+        [min]="departureDate"
         [matDatepicker]="picker"
-        (dateChange)="biedronka($event)"
-        id="koza"
+        (dateChange)="changeDate($event)"
       />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -80,14 +83,14 @@
 
     <!-- data wylotu2 -->
     <!-- TODO Ad max values -->
-    <input
+    <!-- <input
       class="wrapper-child"
       *ngIf="roundTrip == true"
       type="date"
       id="arrivalDate"
       min="{{ departureDate }}"
       (change)="setTime($event)"
-    /><br />
+    /><br /> -->
     <!-- 
   TEST -->
     <!-- TEST -->

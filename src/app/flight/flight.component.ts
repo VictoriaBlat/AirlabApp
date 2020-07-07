@@ -14,6 +14,7 @@ export class FlightComponent implements OnInit {
   opts = connectionsInfo;
   isOpen = false;
   departureDate;
+  maxDepartureDate;
   departureTime1: string;
   departureTime2: string;
   arrivalDate: string;
@@ -28,21 +29,14 @@ export class FlightComponent implements OnInit {
   price = [];
   planeCode: string;
   totalPrice: number;
-  koza;
-
-  //DELETE later!!!!!!
-  foods = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
-  ];
 
   bookingData = [];
   passengers = { adults: 1, childs: 0, infants: 0 };
   totalpassengers = 1;
-  public today = `${new Date().getFullYear()}-0${
-    new Date().getMonth() + 1
-  }-${new Date().getDate()}`;
+  // public today = `${new Date().getFullYear()}-0${
+  //   new Date().getMonth() + 1
+  // }-${new Date().getDate()}`;
+  public today = new Date();
   constructor(
     private router: Router,
     public dialog1: MatDialog,
@@ -51,20 +45,18 @@ export class FlightComponent implements OnInit {
   sessionPassed() {
     this.dialog2.open(SessionTimeoutComponent);
   }
-  biedronka(ev) {
-    console.log('fired');
-    console.log('the date value;', ev.value);
-    console.log('event;', ev.targetElement.id);
+  changeDate(ev) {
     this[ev.targetElement.id] = ev.value;
-    console.log('koza is:', this.departureDate);
   }
   openDialog() {
     this.dialog1.open(DialogSearchComponent);
   }
   ngOnInit() {
-    console.log('departuredate:', this.departureDate);
-    let cities = this.opts.forEach((city) => {});
-
+    this.today = new Date();
+    var year = this.today.getFullYear();
+    var month = this.today.getMonth();
+    var day = this.today.getDate();
+    this.maxDepartureDate = new Date(year + 1, month, day);
     this.roundTrip = true;
   }
   openPassengers() {
@@ -75,7 +67,6 @@ export class FlightComponent implements OnInit {
   }
   @Output() public bookingEvent = new EventEmitter();
   setTime(event) {
-    console.log(event);
     this[event.target.id] = event.target.value;
   }
 
@@ -208,8 +199,6 @@ export class FlightComponent implements OnInit {
       {
         this.openDialog();
       }
-      // this.missingData1 = 'You must choose the arrival';
-      // this.openDialog();
     }
     if (this.roundTrip === true) {
       this.totalPrice = this.totalpassengers * (this.price[0] + this.price[1]);
