@@ -1,9 +1,9 @@
 <div class="seats-info">
-  <h3>Number of passengers: {{ numberOfPassengers }}</h3>
-  <h3>Choosen seats:</h3>
+  <h4>Passengers: {{ numberOfPassengers }}</h4>
+  <h4>Choosen seats:</h4>
   <p *ngFor="let seat of bookedSeats">{{ seat }}</p>
 
-  <h3 *ngIf="seatsLeft > 0">Choose {{ seatsLeft }} more</h3>
+  <h4 *ngIf="seatsLeft > 0">Choose {{ seatsLeft }} more</h4>
 </div>
 <div class="seats-map">
   <svg
@@ -29,7 +29,7 @@
       }
       .st3 {
         clip-path: url(#SVGID_26_);
-        fill: #3541a7;
+        fill: #f3f3f3;
       }
       .st4 {
         clip-path: url(#SVGID_31_);
@@ -51,7 +51,7 @@
         fill: #424242;
       }
       .st10 {
-        fill: #1b2367;
+        fill: #f3f3f3;
       }
       .st11 {
         fill: #828bd8;

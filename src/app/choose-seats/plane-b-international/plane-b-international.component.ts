@@ -20,8 +20,10 @@ export class PlaneBInternationalComponent implements OnInit {
   }
   constructor(public chooseSeats: MatDialog) {}
   onClick($event) {
+    console.log('before:', this.bookedSeats);
     const seat = $event.target.closest('.st121');
     this.chosenSeat = seat.getAttribute('id');
+    console.log(this.chosenSeat);
 
     if (this.bookedSeats.includes(this.chosenSeat)) {
       seat.removeAttribute('style');
@@ -36,6 +38,7 @@ export class PlaneBInternationalComponent implements OnInit {
       seat.setAttribute('class', 'occupied st121');
     }
     this.seatsLeft = this.numberOfPassengers - this.bookedSeats.length;
+    console.log('after:', this.bookedSeats);
   }
 
   goToDetails() {

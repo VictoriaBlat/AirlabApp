@@ -23,7 +23,6 @@ export class FlightComponent implements OnInit {
   isShow = true;
   roundTrip = true;
   trip;
-  missingData1;
   matButtonToggleGroup;
   toggleGroup;
   price = [];
@@ -58,6 +57,7 @@ export class FlightComponent implements OnInit {
     this.dialog1.open(DialogSearchComponent);
   }
   ngOnInit() {
+    console.log('departuredate:', this.departureDate);
     let cities = this.opts.forEach((city) => {});
 
     this.roundTrip = true;
@@ -194,20 +194,17 @@ export class FlightComponent implements OnInit {
   // <------------------_CHANGING PASSANGERS END---------------->
 
   searchFlight() {
-    // setTimeout(() => {
-    //   this.sessionPassed();
-    //   localStorage.clear();
-    // }, 3000); //120000 ??
-    console.log(
-      'togglevalue',
-
-      this.toggleGroup
-    );
-    if (this.arrivalCity == null) {
-      this.missingData1 = 'You must choose the arrival';
-      this.openDialog();
-    } else {
-      this.missingData1 = null;
+    if (
+      (this.roundTrip === true && this.arrivalDate == null) ||
+      this.arrivalCity == null ||
+      this.departureDate == null ||
+      this.departureCity == null
+    ) {
+      {
+        this.openDialog();
+      }
+      // this.missingData1 = 'You must choose the arrival';
+      // this.openDialog();
     }
     if (this.roundTrip === true) {
       this.totalPrice = this.totalpassengers * (this.price[0] + this.price[1]);
@@ -233,5 +230,9 @@ export class FlightComponent implements OnInit {
 
     localStorage.setItem('booking', JSON.stringify(this.bookingData));
     this.bookingEvent.emit(this.bookingData);
+    setTimeout(() => {
+      this.sessionPassed();
+      localStorage.clear();
+    }, 120000); //120000 ??
   }
 }

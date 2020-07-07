@@ -73,7 +73,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <h3>{{ missingData1 }}</h3>
+
   <!-- //TEST TEST TEST//TEST TEST TEST  -->
   <mat-accordion>
     <mat-expansion-panel class="passengersDropdown" hideToggle>
@@ -161,8 +161,23 @@
   </mat-accordion>
   <!-- //TEST TEST TEST//TEST TEST TEST  -->
 </div>
-<a [routerLink]="[this.arrivalCity == null ? '/flight' : '/details']"
+<!-- <a
+  [routerLink]="((roundTrip === true && arrivalDate == null) ||
+arrivalCity ||
+departureDate ||
+departureCity == null
+)) ? ['/flight' ]: ['/details']"
+  ><button mat-raised-button (click)="searchFlight()">Search</button></a
+> -->
+<a
+  [routerLink]="
+    (this.roundTrip === true && this.arrivalDate == null) ||
+    this.arrivalCity == null ||
+    this.departureDate == null ||
+    this.departureCity == null
+      ? '/flight'
+      : '/details'
+  "
   ><button mat-raised-button (click)="searchFlight()">Search</button></a
 >
-
 <!-- <router-outlet> </router-outlet> -->
