@@ -14,7 +14,8 @@ h5 {
   fill: white;
 }
 .flight-card {
-  min-width: 200px;
+  /* min-width: 200px;
+  max-width: 450px; */
 }
 
 .header-card {
@@ -30,4 +31,33 @@ h5 {
 .option-cards mat-card:hover {
   background-color: #3540a54b;
   top: -15px;
+}
+
+.flights-info {
+  display: grid;
+  /* grid-template-columns: 40vw 40vw; */
+  grid-template-columns: repeat(auto-fill, 450px);
+  grid-template-rows: auto auto;
+  grid-auto-flow: row;
+  grid-gap: 10px;
+}
+.option-cards-grid {
+  display: grid;
+  /* grid-template-columns: 40vw 40vw; */
+  /* grid-template-columns: repeat(auto-fill, 450px); */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+  grid-template-rows: auto-fill;
+  grid-auto-flow: row;
+  grid-gap: 10px;
+
+  /* border: 0;
+  box-sizing: border-box;
+  width: 100%;
+} */
+}
+.option-cards mat-card {
+  /* border: 0; */
+  box-sizing: border-box;
+  height: 100%;
 }

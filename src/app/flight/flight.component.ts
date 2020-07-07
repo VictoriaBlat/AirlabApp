@@ -224,9 +224,9 @@ export class FlightComponent implements OnInit {
 
     localStorage.setItem('booking', JSON.stringify(this.bookingData));
     this.bookingEvent.emit(this.bookingData);
-    setTimeout(() => {
-      this.sessionPassed();
-      localStorage.clear();
-    }, 120000); //120000 ??
+    // setTimeout(() => {
+    //   this.sessionPassed();
+    //   localStorage.clear();
+    // }, 120000); //120000 ??
   }
 }
