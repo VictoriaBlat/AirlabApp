@@ -97,18 +97,36 @@ h6 {
   padding-bottom: 1.5em; */
 }
 .passengersDropdown {
-  width: 300px;
+  /* width: 300px; */
 }
 
 .content-wrapper {
   padding: 10px;
   /* border: 3px solid green; */
+
   width: 40vw;
   min-width: 300px;
   box-shadow: 20px 20px 30px grey;
 }
 .wrapper-child {
+  border: 0;
   box-sizing: border-box;
   width: 100%;
-  border: 0;
+}
+.toggle-group {
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.toggle-group mat-button-toggle {
+  box-sizing: border-box;
+  width: 50%;
+}
+.passengers-box {
+  margin-bottom: 10px;
+}
+.search-button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: large;
 }

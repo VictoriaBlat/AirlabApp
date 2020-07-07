@@ -32,7 +32,7 @@
         [max]="maxDepartureDate"
         matInput
         [matDatepicker]="picker"
-        (dateChange)="biedronka($event)"
+        (dateChange)="changeDate($event)"
         id="departureDate"
       />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -60,6 +60,7 @@
 
     <br />
     <mat-button-toggle-group
+      class="toggle-group"
       #toggleGroup="matButtonToggleGroup"
       (change)="changeTrip()"
     >
@@ -96,7 +97,7 @@
     <!-- TEST -->
 
     <!-- //TEST TEST TEST//TEST TEST TEST  -->
-    <mat-accordion>
+    <mat-accordion class="wrapper-child passengers-box">
       <mat-expansion-panel class="passengersDropdown" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -181,8 +182,8 @@
       </mat-expansion-panel>
     </mat-accordion>
     <!-- //TEST TEST TEST//TEST TEST TEST  -->
-  </div>
-  <!-- <a
+
+    <!-- <a
   [routerLink]="((roundTrip === true && arrivalDate == null) ||
 arrivalCity ||
 departureDate ||
@@ -190,16 +191,23 @@ departureCity == null
 )) ? ['/flight' ]: ['/details']"
   ><button mat-raised-button (click)="searchFlight()">Search</button></a
 > -->
-  <a
-    [routerLink]="
-      (this.roundTrip === true && this.arrivalDate == null) ||
-      this.arrivalCity == null ||
-      this.departureDate == null ||
-      this.departureCity == null
-        ? '/flight'
-        : '/details'
-    "
-    ><button mat-raised-button (click)="searchFlight()">Search</button></a
-  >
+    <a
+      [routerLink]="
+        (this.roundTrip === true && this.arrivalDate == null) ||
+        this.arrivalCity == null ||
+        this.departureDate == null ||
+        this.departureCity == null
+          ? '/flight'
+          : '/details'
+      "
+      ><button
+        class="wrapper-child search-button"
+        mat-raised-button
+        (click)="searchFlight()"
+      >
+        Search
+      </button></a
+    >
+  </div>
 </body>
 <!-- <router-outlet> </router-outlet> -->
