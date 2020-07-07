@@ -1,7 +1,65 @@
 .occupied {
   fill: green;
 }
+a:link {
+  text-decoration: none;
+}
 
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
 .free {
   fill: transparent;
+}
+.seats-info {
+  padding: 23px;
+  position: fixed;
+  top: 10vh;
+  left: 10px;
+  min-width: 20vw;
+  max-width: 200px;
+  background-color: #3540a769;
+  border-radius: 5px;
+  color: white;
+}
+
+.seats-info p {
+  display: inline;
+  padding-bottom: 10px;
+}
+:host /deep/ h3 {
+  font-family: "Poppins", sans-serif;
+}
+.seats-info button {
+  margin-top: 10px;
+  display: block;
+}
+@media only screen and (max-device-width: 414px) {
+  .seats-info {
+    left: 0;
+    position: fixed;
+    top: 10vh;
+    left: 10px;
+    min-width: 163px;
+    width: 50vw;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+  }
+  .hide-for-phone h3 {
+    visibility: hidden;
+  }
+  :host /deep/ h3 {
+    font-size: 10px;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+  }
 }

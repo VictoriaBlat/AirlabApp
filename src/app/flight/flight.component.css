@@ -8,7 +8,9 @@ body {
   width: 60px;
   height: 34px;
 }
-
+.header {
+  font-weight: 900;
+}
 .switch input {
   opacity: 0;
   width: 0;

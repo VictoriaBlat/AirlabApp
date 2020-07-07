@@ -1,9 +1,19 @@
 <div class="seats-info">
-  <h3>Number of passengers: {{ numberOfPassengers }}</h3>
-  <h3>Choosen seats:</h3>
-  <p *ngFor="let seat of bookedSeats">{{ seat }}</p>
+  <h3 class="hide-for-phone">NUMBER OF PASSENGERS: {{ numberOfPassengers }}</h3>
+  <h3>CHOOSEN SEATS:</h3>
+  <p *ngFor="let seat of bookedSeats">{{ seat }} &#160;</p>
 
-  <h3 *ngIf="seatsLeft > 0">Choose {{ seatsLeft }} more</h3>
+  <h3 *ngIf="seatsLeft > 0">CHOOSE {{ seatsLeft }} MORE</h3>
+  <a
+    [routerLink]="[
+      bookedSeats.length !== numberOfPassengers
+        ? '/choose-seats'
+        : '/passengers-details'
+    ]"
+    ><button mat-raised-button (click)="goToDetails()">
+      Save and continue
+    </button></a
+  >
 </div>
 
 <div class="seats-map">
@@ -11548,13 +11558,3 @@
     </g>
   </svg>
 </div>
-<a
-  [routerLink]="[
-    bookedSeats.length !== numberOfPassengers
-      ? '/choose-seats'
-      : '/passengers-details'
-  ]"
-  ><button mat-raised-button (click)="goToDetails()">
-    Save and continue
-  </button></a
->

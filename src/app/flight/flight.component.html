@@ -1,5 +1,5 @@
 <body>
-  <h1>PURCHASE A TICKET</h1>
+  <h1 class="header">PURCHASE A TICKET</h1>
   <div class="content-wrapper">
     <!-- miejsce wylotu -->
     <mat-form-field appearance="fill" class="wrapper-child">
@@ -14,7 +14,7 @@
     <!-- miejsce przylotu -->
 
     <div *ngIf="arrivalOptions">
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="wrapper-child">
         <mat-label>Arrival </mat-label>
         <!--  -->
         <mat-select (selectionChange)="changeArrivalCity($event)">
