@@ -1,167 +1,185 @@
-<h1>PURCHASE A TICKET</h1>
-<div class="content-wrapper">
-  <!-- DATE PICKER MATERIAL  -->
-  <mat-form-field appearance="fill">
-    <mat-label>Choose a date</mat-label>
-    <input
-      matInput
-      [matDatepicker]="picker"
-      (dateChange)="biedronka($event)"
-      id="koza"
-    />
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  <!-- DATE PICKER MATERIAL -->
-
-  <!-- MATERIAL TOGGLE START -->
-  <!-- [(ngModel)]="blub" -->
-  <br />
-  <mat-button-toggle-group
-    #toggleGroup="matButtonToggleGroup"
-    (change)="changeTrip()"
-  >
-    <mat-button-toggle [checked]="roundTrip == false" value="one-way"
-      >ONE-WAY</mat-button-toggle
-    >
-    <mat-button-toggle [checked]="roundTrip == true" value="ROUND-TRIP"
-      >ROUND TRIP</mat-button-toggle
-    >
-  </mat-button-toggle-group>
-  <br />
-
-  <input
-    type="date"
-    (change)="setTime($event)"
-    id="departureDate"
-    min="{{ today }}"
-  />
-
-  <!-- data wylotu2 -->
-  <!-- TODO Ad max values -->
-  <input
-    *ngIf="roundTrip == true"
-    type="date"
-    id="arrivalDate"
-    min="{{ departureDate }}"
-    (change)="setTime($event)"
-  /><br />
-  <!-- 
-  TEST -->
-  <!-- TEST -->
-
-  <!-- miejsce wylotu -->
-  <mat-form-field appearance="fill">
-    <mat-label>Departure place</mat-label>
-    <!--  -->
-    <mat-select (selectionChange)="changeDeparture($event)">
-      <mat-option *ngFor="let city of opts" [value]="city">
-        {{ city.city }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <!-- miejsce przylotu -->
-
-  <div *ngIf="arrivalOptions">
-    <mat-form-field appearance="fill">
-      <mat-label>Arrival </mat-label>
+<body>
+  <h1>PURCHASE A TICKET</h1>
+  <div class="content-wrapper">
+    <!-- miejsce wylotu -->
+    <mat-form-field appearance="fill" class="wrapper-child">
+      <mat-label>Departure place</mat-label>
       <!--  -->
-      <mat-select (selectionChange)="changeArrivalCity($event)">
-        <mat-option *ngFor="let city of arrivalOptions" [value]="city.city">
+      <mat-select (selectionChange)="changeDeparture($event)">
+        <mat-option *ngFor="let city of opts" [value]="city">
           {{ city.city }}
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <!-- miejsce przylotu -->
+
+    <div *ngIf="arrivalOptions">
+      <mat-form-field appearance="fill">
+        <mat-label>Arrival </mat-label>
+        <!--  -->
+        <mat-select (selectionChange)="changeArrivalCity($event)">
+          <mat-option *ngFor="let city of arrivalOptions" [value]="city.city">
+            {{ city.city }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- DATE PICKER MATERIAL  -->
+    <mat-form-field class="wrapper-child" appearance="fill">
+      <mat-label>Choose departure date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        (dateChange)="biedronka($event)"
+        id="departureDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker> </mat-datepicker>
+    </mat-form-field>
+
+    <!-- return date -->
+    <mat-form-field
+      *ngIf="roundTrip == true"
+      class="wrapper-child"
+      appearance="fill"
+    >
+      <mat-label>Choose return date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        (dateChange)="biedronka($event)"
+        id="koza"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <!-- DATE PICKER MATERIAL -->
+
+    <br />
+    <mat-button-toggle-group
+      #toggleGroup="matButtonToggleGroup"
+      (change)="changeTrip()"
+    >
+      <mat-button-toggle [checked]="roundTrip == false" value="one-way"
+        >ONE-WAY</mat-button-toggle
+      >
+      <mat-button-toggle [checked]="roundTrip == true" value="ROUND-TRIP"
+        >ROUND TRIP</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+    <br />
+
+    <!-- <input
+      value="Choose a date"
+      class="wrapper-child"
+      type="date"
+      (change)="setTime($event)"
+      id="departureDate"
+      min="{{ today }}"
+    /> -->
+
+    <!-- data wylotu2 -->
+    <!-- TODO Ad max values -->
+    <input
+      class="wrapper-child"
+      *ngIf="roundTrip == true"
+      type="date"
+      id="arrivalDate"
+      min="{{ departureDate }}"
+      (change)="setTime($event)"
+    /><br />
+    <!-- 
+  TEST -->
+    <!-- TEST -->
+
+    <!-- //TEST TEST TEST//TEST TEST TEST  -->
+    <mat-accordion>
+      <mat-expansion-panel class="passengersDropdown" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Passengers
+          </mat-panel-title>
+          <mat-panel-description> {{ totalpassengers }} </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="adults">
+          <button
+            id="adults"
+            #adult
+            (click)="deletePassengers(adult)"
+            mat-icon-button
+            color="primary"
+            aria-label="Example icon button with a home icon"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+
+          <h6>Adults: {{ passengers.adults }}</h6>
+
+          <button
+            id="adults"
+            #adult
+            (click)="addPassengers(adult)"
+            mat-icon-button
+            color="primary"
+            aria-label="Example icon button with a home icon"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+
+        <div class="childs">
+          <button
+            id="childs"
+            #child
+            (click)="deletePassengers(child)"
+            mat-icon-button
+            color="primary"
+            aria-label="Example icon button with a home icon"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+
+          <h6>Childs: {{ passengers.childs }}</h6>
+          <button
+            id="childs"
+            #child
+            (click)="addPassengers(child)"
+            mat-icon-button
+            color="primary"
+            aria-label="Example icon button with a home icon"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+
+        <div class="infants">
+          <button
+            id="infants"
+            #infant
+            (click)="deletePassengers(infant)"
+            mat-icon-button
+            color="primary"
+            aria-label="Example icon button with a home icon"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+          <h6>Infants: {{ passengers.infants }}</h6>
+          <button
+            id="infants"
+            #infant
+            (click)="addPassengers(infant)"
+            mat-icon-button
+            color="primary"
+            aria-label="Example icon button with a home icon"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <!-- //TEST TEST TEST//TEST TEST TEST  -->
   </div>
-
-  <!-- //TEST TEST TEST//TEST TEST TEST  -->
-  <mat-accordion>
-    <mat-expansion-panel class="passengersDropdown" hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Passengers
-        </mat-panel-title>
-        <mat-panel-description> {{ totalpassengers }} </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div class="adults">
-        <button
-          id="adults"
-          #adult
-          (click)="deletePassengers(adult)"
-          mat-icon-button
-          color="primary"
-          aria-label="Example icon button with a home icon"
-        >
-          <mat-icon>remove</mat-icon>
-        </button>
-
-        <h6>Adults: {{ passengers.adults }}</h6>
-
-        <button
-          id="adults"
-          #adult
-          (click)="addPassengers(adult)"
-          mat-icon-button
-          color="primary"
-          aria-label="Example icon button with a home icon"
-        >
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-
-      <div class="childs">
-        <button
-          id="childs"
-          #child
-          (click)="deletePassengers(child)"
-          mat-icon-button
-          color="primary"
-          aria-label="Example icon button with a home icon"
-        >
-          <mat-icon>remove</mat-icon>
-        </button>
-
-        <h6>Childs: {{ passengers.childs }}</h6>
-        <button
-          id="childs"
-          #child
-          (click)="addPassengers(child)"
-          mat-icon-button
-          color="primary"
-          aria-label="Example icon button with a home icon"
-        >
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-
-      <div class="infants">
-        <button
-          id="infants"
-          #infant
-          (click)="deletePassengers(infant)"
-          mat-icon-button
-          color="primary"
-          aria-label="Example icon button with a home icon"
-        >
-          <mat-icon>remove</mat-icon>
-        </button>
-        <h6>Infants: {{ passengers.infants }}</h6>
-        <button
-          id="infants"
-          #infant
-          (click)="addPassengers(infant)"
-          mat-icon-button
-          color="primary"
-          aria-label="Example icon button with a home icon"
-        >
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <!-- //TEST TEST TEST//TEST TEST TEST  -->
-</div>
-<!-- <a
+  <!-- <a
   [routerLink]="((roundTrip === true && arrivalDate == null) ||
 arrivalCity ||
 departureDate ||
@@ -169,15 +187,16 @@ departureCity == null
 )) ? ['/flight' ]: ['/details']"
   ><button mat-raised-button (click)="searchFlight()">Search</button></a
 > -->
-<a
-  [routerLink]="
-    (this.roundTrip === true && this.arrivalDate == null) ||
-    this.arrivalCity == null ||
-    this.departureDate == null ||
-    this.departureCity == null
-      ? '/flight'
-      : '/details'
-  "
-  ><button mat-raised-button (click)="searchFlight()">Search</button></a
->
+  <a
+    [routerLink]="
+      (this.roundTrip === true && this.arrivalDate == null) ||
+      this.arrivalCity == null ||
+      this.departureDate == null ||
+      this.departureCity == null
+        ? '/flight'
+        : '/details'
+    "
+    ><button mat-raised-button (click)="searchFlight()">Search</button></a
+  >
+</body>
 <!-- <router-outlet> </router-outlet> -->

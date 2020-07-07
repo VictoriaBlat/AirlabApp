@@ -1,5 +1,6 @@
 body {
   font-family: "Lato", sans-serif;
+  margin: 20px;
 }
 .switch {
   position: relative;
@@ -97,4 +98,16 @@ h6 {
 }
 .passengersDropdown {
   width: 300px;
+}
+
+.content-wrapper {
+  padding: 10px;
+  /* border: 3px solid green; */
+  width: 40vw;
+  box-shadow: 20px 20px 30px grey;
+}
+.wrapper-child {
+  box-sizing: border-box;
+  width: 100%;
+  border: 0;
 }

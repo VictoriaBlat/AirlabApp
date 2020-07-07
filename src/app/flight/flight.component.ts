@@ -13,7 +13,7 @@ import { SessionTimeoutComponent } from '../session-timeout/session-timeout.comp
 export class FlightComponent implements OnInit {
   opts = connectionsInfo;
   isOpen = false;
-  departureDate: string;
+  departureDate;
   departureTime1: string;
   departureTime2: string;
   arrivalDate: string;
@@ -28,6 +28,8 @@ export class FlightComponent implements OnInit {
   price = [];
   planeCode: string;
   totalPrice: number;
+  koza;
+
   //DELETE later!!!!!!
   foods = [
     { value: 'steak-0', viewValue: 'Steak' },
@@ -51,7 +53,10 @@ export class FlightComponent implements OnInit {
   }
   biedronka(ev) {
     console.log('fired');
-    console.log(ev.value);
+    console.log('the date value;', ev.value);
+    console.log('event;', ev.targetElement.id);
+    this[ev.targetElement.id] = ev.value;
+    console.log('koza is:', this.departureDate);
   }
   openDialog() {
     this.dialog1.open(DialogSearchComponent);
