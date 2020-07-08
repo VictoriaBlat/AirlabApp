@@ -12,19 +12,14 @@ export class PassengersDetailsComponent implements OnInit {
   passengersData = [];
   userLogedIn;
   user;
-  userFormIndex;
   userData = { name: '', surname: '', email: '' };
-  // isTheUserNotLogged;
   constructor() {}
 
   ngOnInit(): void {
     this.bookingData = JSON.parse(localStorage.getItem('booking'))[0];
     this.userLogedIn = JSON.parse(localStorage.getItem('loggedIn'));
     this.user = JSON.parse(localStorage.getItem('userLogedIn'));
-    this.userFormIndex = this.bookingData.numberOfPassengers + 1;
-    // if (this.userLogedIn.id.length > 0) {
-    //   this.isTheUserNotLogged = false;
-    // }
+
     let numbOfinteration;
     if (this.userLogedIn) {
       numbOfinteration = this.bookingData.numberOfPassengers - 1;
@@ -34,7 +29,6 @@ export class PassengersDetailsComponent implements OnInit {
     for (let i = 0; i < numbOfinteration; i++) {
       this.passengersData.push({ name: '', surname: '', email: '' });
     }
-    console.log(this.passengersData);
   }
 
   submitingInfo() {
@@ -47,7 +41,5 @@ export class PassengersDetailsComponent implements OnInit {
       this.passengersData.unshift(this.userData);
     }
     localStorage.setItem('passengersData', JSON.stringify(this.passengersData));
-    console.log(this.passengersData);
   }
-  changeCurrency() {}
 }

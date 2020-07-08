@@ -83,7 +83,6 @@ export class FlightComponent implements OnInit {
   }
   changeArrivalCity(event) {
     this.arrivalCity = event.value;
-    console.log(this.arrivalCity);
     //move the following part to details component coditions
     let aCode;
     this.opts.forEach((city) => {
@@ -139,16 +138,8 @@ export class FlightComponent implements OnInit {
         });
       }
     });
-    console.log(this.price);
-    console.log(
-      this.departureTime1,
-      this.departureTime2,
-      'arrrrrrivals1',
-      this.arrivalTime1,
-      'arrrrrrivals2',
-      this.arrivalTime2
-    );
-    //set plane codes - plane types A= connections with the country, B=connections within the continent, C = continental connections
+
+    //set plane codes - plane types A=domestic connections, B=connections within the continent, C = continental connections
     let departureCountry;
     let departureContinent;
     let arrivalCountry;
@@ -165,13 +156,7 @@ export class FlightComponent implements OnInit {
         });
       }
     });
-    console.log(this.price);
-    console.log(
-      departureCountry,
-      departureContinent,
-      arrivalCountry,
-      arrivalContinent
-    );
+
     if (departureCountry === arrivalCountry) {
       this.planeCode = 'A';
     } else if (
@@ -182,19 +167,14 @@ export class FlightComponent implements OnInit {
     } else {
       this.planeCode = 'C';
     }
-    console.log('plane code:', this.planeCode);
   }
   // <------------------_CHANGING PASSANGERS START---------------->
 
   deletePassengers(ev) {
     let id = ev._elementRef.nativeElement.id;
-    console.log('id type', id);
     if (this.passengers['adults'] >= 1) {
-      console.log('adults are:', this.passengers['adults']);
       if (this.passengers[id] > 0) {
-        console.log('how many before:', this.passengers[id]);
         this.passengers[id] = this.passengers[id] - 1;
-        console.log('how many after:', this.passengers[id]);
       }
     }
     this.countTotalPassangers();
@@ -255,9 +235,9 @@ export class FlightComponent implements OnInit {
 
     localStorage.setItem('booking', JSON.stringify(this.bookingData));
     this.bookingEvent.emit(this.bookingData);
-    // setTimeout(() => {
-    //   this.sessionPassed();
-    //   localStorage.clear();
-    // }, 120000); //120000 ??
+    setTimeout(() => {
+      this.sessionPassed();
+      localStorage.clear();
+    }, 120000); //120000 or longer ??
   }
 }

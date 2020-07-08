@@ -16,10 +16,6 @@ h5 {
 .booked {
   fill: white;
 }
-.flight-card {
-  /* min-width: 200px;
-  max-width: 450px; */
-}
 
 .header-card {
   background-color: rgb(209, 203, 203);
@@ -36,15 +32,13 @@ h5 {
   color: white;
 }
 .option-cards mat-card:hover {
-  /* background-color: #3540a54b; */
   top: -15px;
   box-shadow: 20px 20px 30px grey;
 }
 
 .flights-info {
   display: grid;
-  /* grid-template-columns: 40vw 40vw; */
-  /* grid-template-columns: repeat(auto-fill, 300px); */
+
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: auto auto;
   grid-auto-flow: row;
@@ -52,18 +46,12 @@ h5 {
 }
 .option-cards-grid {
   display: grid;
-  /* grid-template-columns: 40vw 40vw; */
-  /* grid-template-columns: repeat(auto-fill, 450px); */
+
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
   grid-template-rows: auto-fill;
   grid-auto-flow: row;
   grid-gap: 10px;
-
-  /* border: 0;
-  box-sizing: border-box;
-  width: 100%;
-} */
 }
 .flights-info mat-card-header {
   border: 2px solid salmon;
@@ -89,32 +77,15 @@ h2 {
   flex-direction: column;
 }
 .option-cards mat-card {
-  /* border: 0; */
   box-sizing: border-box;
   height: 100%;
 }
 .currency {
   display: flex;
 }
-/* .currency mat-form-field {
-  display: inline;
-} */
 
 .currency h2 {
   display: inline;
   font-size: 2rem;
   margin: 10px 0 0 0;
 }
-/* .option-cards {
-  border: 5px solid salmon;
-  display: flex-box;
-  flex-direction: column;
- 
-}
-.flex-thingies-child-1 {
-  border: 10px solid red;
-}
-.example-card mat-card-actions {
-  border: 10px solid green;
-  align-self: flex-end;
-} */

@@ -1,13 +1,6 @@
 <body>
-  <!-- <div class="wrapper">
-  <label for="mail">E-Mail Address</label>
-  <input id="mail" type="text" placeholder="e-mail" #email />
-  <label for="passwort">Passwort</label>
-
-  <input type="text" placeholder="Password" #password />
-  <h5>Do not remember your password?</h5> -->
   <!-- TODO: add coditional routing routerLink="/passenger-details" -->
-  <!-- MAT INPUT -->
+
   <div *ngIf="user == null; else isLogged">
     <h2>Login <span class="fat">airlab</span></h2>
     <mat-form-field appearance="outline">
@@ -18,12 +11,11 @@
       <mat-label>PASSWORD</mat-label>
       <input type="password" matInput #password />
     </mat-form-field>
-    <!-- MAT INPUT -->
+
     <button mat-raised-button (click)="log(email, password)">
       LOG IN
     </button>
 
-    <!-- </div> -->
     <div class="register">
       <h2>Do not have an account yet?</h2>
       <button mat-raised-button>

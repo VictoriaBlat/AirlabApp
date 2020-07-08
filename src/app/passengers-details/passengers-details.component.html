@@ -100,26 +100,7 @@
         </mat-form-field>
       </div>
     </div>
-    <!-- <a routerLink="/summary"
-    ><button mat-raised-button (click)="submitingInfo()">
-      Go to check-out
-    </button></a
-  > -->
   </div>
-
-  <!-- <mat-form-field appearance="outline">
-  <mat-label>FIRST NAME</mat-label>
-  <input
-    matInput
-    [matAutocomplete]="auto"
-    placeholder="{{ userLogedIn.firstName }}"
-  />
-  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-    <mat-option value="{{ userLogedIn.firstName }}">
-      {{ userLogedIn.firstName }}</mat-option
-    >
-  </mat-autocomplete>
-</mat-form-field> -->
   <ng-template #logedIn>
     <h2>Welcome back {{ user.firstName }}!</h2>
     <h5>PASSENGER 1</h5>
@@ -299,12 +280,6 @@
           </div>
         </mat-form-field>
       </div>
-
-      <!-- <a routerLink="/summary"
-      ><button mat-raised-button (click)="submitingInfo()">
-        Go to check-out
-      </button></a
-    > -->
     </div>
   </ng-template>
   <a routerLink="/summary"

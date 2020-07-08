@@ -72,31 +72,6 @@
       >
     </mat-button-toggle-group>
     <br />
-
-    <!-- <input
-      value="Choose a date"
-      class="wrapper-child"
-      type="date"
-      (change)="setTime($event)"
-      id="departureDate"
-      min="{{ today }}"
-    /> -->
-
-    <!-- data wylotu2 -->
-    <!-- TODO Ad max values -->
-    <!-- <input
-      class="wrapper-child"
-      *ngIf="roundTrip == true"
-      type="date"
-      id="arrivalDate"
-      min="{{ departureDate }}"
-      (change)="setTime($event)"
-    /><br /> -->
-    <!-- 
-  TEST -->
-    <!-- TEST -->
-
-    <!-- //TEST TEST TEST//TEST TEST TEST  -->
     <mat-accordion class="wrapper-child passengers-box">
       <mat-expansion-panel class="passengersDropdown" hideToggle>
         <mat-expansion-panel-header>
@@ -181,16 +156,7 @@
         </div>
       </mat-expansion-panel>
     </mat-accordion>
-    <!-- //TEST TEST TEST//TEST TEST TEST  -->
 
-    <!-- <a
-  [routerLink]="((roundTrip === true && arrivalDate == null) ||
-arrivalCity ||
-departureDate ||
-departureCity == null
-)) ? ['/flight' ]: ['/details']"
-  ><button mat-raised-button (click)="searchFlight()">Search</button></a
-> -->
     <a
       [routerLink]="
         (this.roundTrip === true && this.arrivalDate == null) ||
@@ -210,4 +176,3 @@ departureCity == null
     >
   </div>
 </body>
-<!-- <router-outlet> </router-outlet> -->
