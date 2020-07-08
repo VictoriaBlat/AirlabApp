@@ -22,7 +22,10 @@
         </div>
         <i class="material-icons view_inline">flight_land</i>
 
-        <h3 class="view_inline">Arrival: {{ bookingData.arrivalCity }}</h3>
+        <h3 class="view_inline">
+          {{ bookingData.arrivalCity }} {{ bookingData.arrivalDate }} Departure
+          Time: {{ bookingData.arrivalTime1 }}
+        </h3>
         <br /><br /><br /><br />
         <h3>
           Price: {{ (bookingData.price[0] * selectedCurrency).toFixed(2) }}
@@ -54,7 +57,11 @@
         </div>
         <i class="material-icons view_inline">flight_land</i>
 
-        <h3 class="view_inline">Arrival: {{ bookingData.departureCity }}</h3>
+        <h3 class="view_inline">
+          {{ bookingData.departureCity }}
+          {{ bookingData.arrivalDate }} Departure Time:
+          {{ bookingData.arrivalTime2 }}
+        </h3>
         <br /><br /><br /><br />
 
         <h3>

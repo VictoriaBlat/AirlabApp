@@ -17,6 +17,9 @@ export class FlightComponent implements OnInit {
   maxDepartureDate;
   departureTime1: string;
   departureTime2: string;
+  arrivalTime1: string;
+  arrivalTime2: string;
+  durration;
   arrivalDate;
   departureCity: string;
   arrivalCity: string;
@@ -94,16 +97,31 @@ export class FlightComponent implements OnInit {
         city.value.forEach((arrival) => {
           if (arrival.city === this.arrivalCity) {
             this.departureTime1 = arrival.departureTime;
+            this.arrivalTime1 = arrival.arrivalTime;
+            this.durration = arrival.durration;
           }
         });
       }
     });
+
+    //ARRIVAL TIME1
+    this.opts.forEach((city) => {
+      if (city.city === this.departureCity) {
+        city.value.forEach((arrival) => {
+          if (arrival.city === this.arrivalCity) {
+            this.departureTime1 = arrival.departureTime;
+          }
+        });
+      }
+    });
+
     //Time of departure2
     this.opts.forEach((city) => {
       if (city.city === this.arrivalCity) {
         city.value.forEach((arrival) => {
           if (arrival.city === this.departureCity) {
             this.departureTime2 = arrival.departureTime;
+            this.arrivalTime2 = arrival.arrivalTime;
           }
         });
       }
@@ -122,7 +140,14 @@ export class FlightComponent implements OnInit {
       }
     });
     console.log(this.price);
-    console.log(this.departureTime1, this.departureTime2);
+    console.log(
+      this.departureTime1,
+      this.departureTime2,
+      'arrrrrrivals1',
+      this.arrivalTime1,
+      'arrrrrrivals2',
+      this.arrivalTime2
+    );
     //set plane codes - plane types A= connections with the country, B=connections within the continent, C = continental connections
     let departureCountry;
     let departureContinent;
@@ -218,6 +243,9 @@ export class FlightComponent implements OnInit {
         price: this.price,
         departureTime1: this.departureTime1,
         departureTime2: this.departureTime2,
+        arrivalTime1: this.arrivalTime1,
+        arrivalTime2: this.arrivalTime2,
+        durration: this.durration,
         planeCode: this.planeCode,
         roundTrip: this.roundTrip,
         basePrice: this.totalPrice,

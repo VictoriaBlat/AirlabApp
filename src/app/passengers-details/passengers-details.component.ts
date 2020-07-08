@@ -40,7 +40,7 @@ export class PassengersDetailsComponent implements OnInit {
   submitingInfo() {
     if (this.userLogedIn) {
       this.userData = {
-        name: this.user.firstname,
+        name: this.user.firstName,
         surname: this.user.lastname,
         email: this.user.email,
       };

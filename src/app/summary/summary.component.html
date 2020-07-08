@@ -6,18 +6,21 @@
       <mat-card-content>
         <!-- <h2>{{ x + 1 }}.Passenger &#160;</h2> -->
         <h2>
-          {{ x + 1 }}.{{ passenger.data.name }}{{ passenger.data.surname }}
+          {{ x + 1 }}.{{ passenger.data.name }}&#160;
+          {{ passenger.data.surname }}
         </h2>
         <mat-card-subtitle>{{ passenger.data.email }}</mat-card-subtitle>
         <mat-card-subtitle
-          >Departing flight:&#160;{{ booking.departureDate
-          }}{{ booking.departureCity }}-{{
+          >Departing flight:&#160;{{ booking.departureDate }}&#160;({{
+            booking.departureTime1
+          }})&#160;{{ booking.departureCity }}-{{
             booking.arrivalCity
           }}</mat-card-subtitle
         >
         <mat-card-subtitle *ngIf="booking.roundTrip == true"
-          >Return flight:&#160;{{ booking.arrivalDate
-          }}{{ booking.arrivalCity }}-{{
+          >Return flight:&#160;{{ booking.arrivalDate }}&#160;({{
+            booking.departureTime2
+          }}) &#160;{{ booking.arrivalCity }}-{{
             booking.departureCity
           }}</mat-card-subtitle
         >

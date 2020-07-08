@@ -1,7 +1,7 @@
 <body>
   <div *ngIf="userLogedIn == null; else logedIn" class="not-logged">
-    <div>
-      <h5>Fill out the passenger data or log in</h5>
+    <div class="log-me-in">
+      <h2>Fill out the passenger data or log in</h2>
       <a routerLink="/log"><button mat-raised-button>Login</button></a>
     </div>
 
