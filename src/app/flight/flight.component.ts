@@ -17,7 +17,7 @@ export class FlightComponent implements OnInit {
   maxDepartureDate;
   departureTime1: string;
   departureTime2: string;
-  arrivalDate: string;
+  arrivalDate;
   departureCity: string;
   arrivalCity: string;
   arrivalOptions;
@@ -205,10 +205,13 @@ export class FlightComponent implements OnInit {
     } else {
       this.totalPrice = this.totalpassengers * this.price[0];
     }
+
+    let departureDate1 = this.departureDate.toDateString();
+    let arrivalDate1 = this.arrivalDate.toDateString();
     this.bookingData = [
       {
-        departureDate: this.departureDate,
-        arrivalDate: this.arrivalDate,
+        departureDate: departureDate1,
+        arrivalDate: arrivalDate1,
         departureCity: this.departureCity,
         arrivalCity: this.arrivalCity,
         passengers: this.passengers,

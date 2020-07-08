@@ -26,6 +26,10 @@ h5 {
 }
 .view_inline {
   display: inline;
+  padding-top: 50px;
+}
+.departure {
+  margin-top: 50px;
 }
 .choosen {
   background-color: #3540a5;
@@ -66,11 +70,24 @@ h5 {
   color: white;
   background-color: salmon;
   border-radius: 5px;
+  margin-bottom: 30px;
 }
 .flights-info mat-card-title {
   margin-top: 5px;
 }
-
+.extra-price {
+  align-items: flex-end;
+}
+:host /deep/ h4,
+h3,
+h2 {
+  font-family: Lato;
+}
+.option-cards mat-card-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 .option-cards mat-card {
   /* border: 0; */
   box-sizing: border-box;

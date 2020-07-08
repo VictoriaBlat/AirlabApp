@@ -1,9 +1,113 @@
-<div *ngIf="isTheUserNotLogged">
-  <h5>Already have an account?</h5>
-  <a routerLink="/log"><button>Login!</button></a>
-</div>
+<body>
+  <div *ngIf="userLogedIn == null; else logedIn" class="not-logged">
+    <div>
+      <h5>Fill out the passenger data or log in</h5>
+      <a routerLink="/log"><button mat-raised-button>Login</button></a>
+    </div>
 
-<mat-form-field appearance="outline">
+    <div class="passengerInfo">
+      <div
+        *ngFor="
+          let i of [].constructor(bookingData.numberOfPassengers);
+          let x = index
+        "
+      >
+        <h5>PASSENGER {{ x + 1 }}</h5>
+        <mat-form-field appearance="outline">
+          <mat-label>FIRST NAME</mat-label>
+          <input
+            id="name"
+            name="name"
+            class="form-control"
+            matInput
+            #name
+            [(ngModel)]="passengersData[x].name"
+            required
+            minlength="3"
+            appForbiddenName="bob"
+          />
+          <div
+            *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="name.errors.required">
+              <h2>Name is required.</h2>
+            </div>
+            <div *ngIf="name.errors.minlength">
+              Name must be at least 3 characters long.
+            </div>
+            <div *ngIf="name.errors.forbiddenName">
+              Name cannot be Duda.
+            </div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>LAST NAME </mat-label>
+          <input
+            id="surname"
+            class="form-control"
+            required
+            minlength="3"
+            appForbiddenName="Duda"
+            name="surname"
+            matInput
+            #surname
+            [(ngModel)]="passengersData[x].surname"
+          />
+          <div
+            *ngIf="surname.invalid && (surname.dirty || surname.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="surname.errors.required">
+              <h2>Name is required.</h2>
+            </div>
+            <div *ngIf="surname.errors.minlength">
+              Name must be at least 3 characters long.
+            </div>
+            <div *ngIf="surname.errors.forbiddenName">
+              Name cannot be Duda.
+            </div>
+          </div>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>E-MAIL </mat-label>
+          <input
+            id="email"
+            class="form-control"
+            required
+            minlength="4"
+            appForbiddenName="111"
+            name="email"
+            matInput
+            #email
+            [(ngModel)]="passengersData[x].email"
+          />
+          <div
+            *ngIf="email.invalid && (email.dirty || email.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="email.errors.required">
+              <h2>Name is required.</h2>
+            </div>
+            <div *ngIf="email.errors.minlength">
+              Invalid e-mail.
+            </div>
+            <div *ngIf="email.errors.forbiddenName">
+              Invalid e-mail.
+            </div>
+          </div>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- <a routerLink="/summary"
+    ><button mat-raised-button (click)="submitingInfo()">
+      Go to check-out
+    </button></a
+  > -->
+  </div>
+
+  <!-- <mat-form-field appearance="outline">
   <mat-label>FIRST NAME</mat-label>
   <input
     matInput
@@ -15,54 +119,197 @@
       {{ userLogedIn.firstName }}</mat-option
     >
   </mat-autocomplete>
-</mat-form-field>
+</mat-form-field> -->
+  <ng-template #logedIn>
+    <h2>Welcome back {{ user.firstName }}!</h2>
+    <h5>PASSENGER 1</h5>
+    <div class="passengerInfo">
+      <mat-form-field appearance="outline">
+        <mat-label>FIRST NAME</mat-label>
+        <input
+          value="{{ user.firstName }}"
+          matInput
+          #name
+          [(ngModel)]="user.firstName"
+          [matAutocomplete]="auto"
+          placeholder="{{ user.firstName }}"
+        />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option value="{{ user.firstName }}">
+            {{ user.firstName }}</mat-option
+          >
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>LAST NAME </mat-label>
+        <input
+          value="{{ user.lastname }}"
+          placeholder="{{ user.lastname }}"
+          [matAutocomplete]="auto"
+          id="surname"
+          class="form-control"
+          required
+          minlength="3"
+          appForbiddenName="Duda"
+          name="surname"
+          matInput
+          #surname
+          [(ngModel)]="user.lastname"
+        /><mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option value="{{ user.lastname }}">
+            {{ user.lastame }}</mat-option
+          >
+        </mat-autocomplete>
+        <div
+          *ngIf="surname.invalid && (surname.dirty || surname.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="surname.errors.required">
+            <h2>Name is required.</h2>
+          </div>
+          <div *ngIf="surname.errors.minlength">
+            Name must be at least 3 characters long.
+          </div>
+          <div *ngIf="surname.errors.forbiddenName">
+            Name cannot be Duda.
+          </div>
+        </div>
+      </mat-form-field>
 
-<div class="passengerInfo">
-  <h5>PASSENGER (ADULT)</h5>
-  <div
-    *ngFor="
-      let i of [].constructor(bookingData.numberOfPassengers);
-      let x = index
-    "
-  >
-    <mat-form-field appearance="outline">
-      <mat-label>FIRST NAME</mat-label>
-      <input
-        id="name"
-        name="name"
-        class="form-control"
-        matInput
-        #name
-        [(ngModel)]="passengersData[x].name"
-        required
-        minlength="3"
-        appForbiddenName="bob"
-      />
+      <mat-form-field appearance="outline">
+        <mat-label>E-MAIL </mat-label>
+        <input
+          [matAutocomplete]="auto"
+          id="email"
+          class="form-control"
+          required
+          minlength="4"
+          appForbiddenName="111"
+          name="email"
+          matInput
+          #email
+          [(ngModel)]="user.email"
+        />
+        <div
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="email.errors.required">
+            <h2>Name is required.</h2>
+          </div>
+          <div *ngIf="email.errors.minlength">
+            Invalid e-mail.
+          </div>
+          <div *ngIf="email.errors.forbiddenName">
+            Invalid e-mail.
+          </div>
+        </div>
+      </mat-form-field>
       <div
-        *ngIf="name.invalid && (name.dirty || name.touched)"
-        class="alert alert-danger"
+        *ngFor="
+          let i of [].constructor(bookingData.numberOfPassengers - 1);
+          let x = index
+        "
       >
-        <div *ngIf="name.errors.required">
-          <h2>Name is required.</h2>
-        </div>
-        <div *ngIf="name.errors.minlength">
-          Name must be at least 4 characters long.
-        </div>
-        <div *ngIf="name.errors.forbiddenName">
-          Name cannot be Bob.
-        </div>
+        <h5>PASSENGER {{ x + 2 }}</h5>
+        <mat-form-field appearance="outline">
+          <mat-label>FIRST NAME</mat-label>
+          <input
+            id="name"
+            name="name"
+            class="form-control"
+            matInput
+            #name
+            [(ngModel)]="passengersData[x].name"
+            required
+            minlength="3"
+            appForbiddenName="duda"
+          />
+          <div
+            *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="name.errors.required">
+              <h2>Name is required.</h2>
+            </div>
+            <div *ngIf="name.errors.minlength">
+              Name must be at least 3 characters long.
+            </div>
+            <div *ngIf="name.errors.forbiddenName">
+              Name cannot be Duda.
+            </div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>LAST NAME </mat-label>
+          <input
+            id="surname"
+            class="form-control"
+            required
+            minlength="3"
+            appForbiddenName="Duda"
+            name="surname"
+            matInput
+            #surname
+            [(ngModel)]="passengersData[x].surname"
+          />
+          <div
+            *ngIf="surname.invalid && (surname.dirty || surname.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="surname.errors.required">
+              <h2>Name is required.</h2>
+            </div>
+            <div *ngIf="surname.errors.minlength">
+              Name must be at least 3 characters long.
+            </div>
+            <div *ngIf="surname.errors.forbiddenName">
+              Name cannot be Duda.
+            </div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>E-MAIL </mat-label>
+          <input
+            id="email"
+            class="form-control"
+            required
+            minlength="4"
+            appForbiddenName="111"
+            name="email"
+            matInput
+            #email
+            [(ngModel)]="passengersData[x].email"
+          />
+          <div
+            *ngIf="email.invalid && (email.dirty || email.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="email.errors.required">
+              <h2>Name is required.</h2>
+            </div>
+            <div *ngIf="email.errors.minlength">
+              Invalid e-mail.
+            </div>
+            <div *ngIf="email.errors.forbiddenName">
+              Invalid e-mail.
+            </div>
+          </div>
+        </mat-form-field>
       </div>
-    </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>LAST NAME </mat-label>
-      <input matInput #last [(ngModel)]="passengersData[x].surname" />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>E-MAIL </mat-label>
-      <input matInput #mail [(ngModel)]="passengersData[x].email" />
-    </mat-form-field>
-  </div>
-
-  <button (click)="submitingInfo()">Check it out</button>
-</div>
+      <!-- <a routerLink="/summary"
+      ><button mat-raised-button (click)="submitingInfo()">
+        Go to check-out
+      </button></a
+    > -->
+    </div>
+  </ng-template>
+  <a routerLink="/summary"
+    ><button mat-raised-button (click)="submitingInfo()">
+      Go to check-out
+    </button></a
+  >
+</body>

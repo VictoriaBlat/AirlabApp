@@ -7,18 +7,23 @@
       </mat-card-header>
 
       <mat-card-content>
-        <div>
+        <div class="departure">
           <i class="material-icons view_inline">flight_takeoff</i>
-          <h3 class="view_inline">{{ bookingData.departureCity }}</h3>
-          <h3>
-            Departure: {{ bookingData.departureCity }}
+          <h3 class="view_inline">
+            {{ bookingData.departureCity }}
             {{ bookingData.departureDate }} Departure Time:
             {{ bookingData.departureTime1 }}
           </h3>
+          <!-- <h3>
+            Departure: {{ bookingData.departureCity }}
+            {{ bookingData.departureDate }} Departure Time:
+            {{ bookingData.departureTime1 }}
+          </h3> -->
         </div>
-        <i class="material-icons">flight_land</i>
+        <i class="material-icons view_inline">flight_land</i>
 
-        <h3>Arrival: {{ bookingData.arrivalCity }}</h3>
+        <h3 class="view_inline">Arrival: {{ bookingData.arrivalCity }}</h3>
+        <br /><br /><br /><br />
         <h3>
           Price: {{ (bookingData.price[0] * selectedCurrency).toFixed(2) }}
           {{
@@ -28,6 +33,7 @@
               ? "PLN"
               : "€"
           }}
+          /passenger
         </h3>
       </mat-card-content>
     </mat-card>
@@ -38,14 +44,19 @@
       </mat-card-header>
 
       <mat-card-content>
-        <i class="material-icons">flight_takeoff</i>
-        <h3>
-          Departure: {{ bookingData.arrivalCity }}
-          {{ bookingData.arrivalDate }} Departure Time:
-          {{ bookingData.departureTime2 }}
-        </h3>
-        <i class="material-icons">flight_land</i>
-        <h3>Arrival: {{ bookingData.departureCity }}</h3>
+        <div class="departure">
+          <i class="material-icons view_inline">flight_takeoff</i>
+          <h3 class="view_inline">
+            {{ bookingData.arrivalCity }}
+            {{ bookingData.arrivalDate }} Departure Time:
+            {{ bookingData.departureTime2 }}
+          </h3>
+        </div>
+        <i class="material-icons view_inline">flight_land</i>
+
+        <h3 class="view_inline">Arrival: {{ bookingData.departureCity }}</h3>
+        <br /><br /><br /><br />
+
         <h3>
           Price: {{ (bookingData.price[1] * selectedCurrency).toFixed(2) }}
           {{
@@ -55,12 +66,14 @@
               ? "PLN"
               : "€"
           }}
+          /passenger
         </h3>
       </mat-card-content>
     </mat-card>
   </div>
   <h2>
-    Base price: {{ (bookingData.basePrice * selectedCurrency).toFixed(2) }}
+    Base price total:
+    {{ (bookingData.basePrice * selectedCurrency).toFixed(2) }}
     {{ selectedCurrency == usd ? "$" : selectedCurrency == pln ? "PLN" : "€" }}
   </h2>
 
@@ -81,30 +94,34 @@
         </mat-card-header>
 
         <mat-card-content>
-          <li>
-            Free carry-on bag (40 x 30 x 20 cm) in the cabin, placed under the
-            seat
-          </li>
-          <li>Online check-in up to 2 days before departure</li>
-          <li>
-            Free seat selection.
-          </li>
+          <ul>
+            <li>
+              Free carry-on bag (40 x 30 x 20 cm) in the cabin, placed under the
+              seat
+            </li>
+            <li>Online check-in up to 2 days before departure</li>
+            <li>
+              Free seat selection.
+            </li>
+          </ul>
+          <br /><br /><br /><br /><br /><br />
+          <div class="extra-price">
+            <h4>per passenger</h4>
+            <button mat-button>
+              {{ (extras.basic * selectedCurrency).toFixed(0) }}
+              {{
+                selectedCurrency == usd
+                  ? "USD"
+                  : selectedCurrency == pln
+                  ? "PLN"
+                  : "EUR"
+              }}
+            </button>
+          </div>
         </mat-card-content>
-        per passenger
-        <mat-card-actions>
-          <button mat-button>
-            {{ (extras.basic * selectedCurrency).toFixed(0) }}
-            {{
-              selectedCurrency == usd
-                ? "USD"
-                : selectedCurrency == pln
-                ? "PLN"
-                : "EUR"
-            }}
-          </button>
-        </mat-card-actions>
       </mat-card>
     </div>
+
     <div class="option-cards">
       <mat-card
         class="example-card"
@@ -118,24 +135,42 @@
         </mat-card-header>
 
         <mat-card-content>
-          <li>
-            Free carry-on bag (40 x 30 x 20 cm) in the cabin, placed under the
-            seat
-          </li>
+          <ul>
+            <li>
+              Free carry-on bag (40 x 30 x 20 cm) in the cabin, placed under the
+              seat
+            </li>
 
-          <li>Trolley Bag (55 x 40 x 23 cm) in the cabin</li>
-          <li>20 kg checked-in bag</li>
-          <li>
-            Free seat selection.
-          </li>
+            <li>Trolley Bag (55 x 40 x 23 cm) in the cabin</li>
+            <li>20 kg checked-in bag</li>
+            <li>
+              Free seat selection.
+            </li>
 
-          <li>Priority Boarding</li>
-          <li>Priority check-in</li>
-          <li>Online check-in up to 30 days before departure</li>
-          <li>Free airport and online check-in</li>
+            <li>Priority Boarding</li>
+            <li>Priority check-in</li>
+            <li>Online check-in up to 30 days before departure</li>
+            <li>Free airport and online check-in</li>
+          </ul>
+          <br />
+
+          <div class="extra-price">
+            <h4>per passenger</h4>
+            <button mat-button>
+              +
+              {{ (extras.plus * selectedCurrency).toFixed(0) }}
+              {{
+                selectedCurrency == usd
+                  ? "USD"
+                  : selectedCurrency == pln
+                  ? "PLN"
+                  : "EUR"
+              }}
+            </button>
+          </div>
         </mat-card-content>
-        per passenger
-        <mat-card-actions>
+        <!-- per passenger -->
+        <!-- <mat-card-actions>
           <button mat-button>
             +
             {{ (extras.plus * selectedCurrency).toFixed(0) }}
@@ -147,64 +182,60 @@
                 : "EUR"
             }}
           </button>
-        </mat-card-actions>
+        </mat-card-actions> -->
       </mat-card>
     </div>
+
     <div class="option-cards">
       <mat-card
         class="example-card"
         (click)="chooseOption('premium')"
         [class.choosen]="option == 'premium'"
       >
-        <div class="flex-thingies-parent">
-          <div class="flex-thingies-child-1">
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>PREMIIUM</mat-card-title>
-              <mat-card-subtitle>ALL IN & FULL FLEX</mat-card-subtitle>
-            </mat-card-header>
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>PREMIIUM</mat-card-title>
+          <mat-card-subtitle>ALL IN & FULL FLEX</mat-card-subtitle>
+        </mat-card-header>
 
-            <mat-card-content>
-              <ul>
-                <li>
-                  Free carry-on bag (40 x 30 x 20 cm) in the cabin, placed under
-                  the seat
-                </li>
-                <li>Trolley Bag (55 x 40 x 23 cm) in the cabin</li>
-                <li>32 kg checked-in bag</li>
-                <li>
-                  Free seat selection.
-                </li>
-              </ul>
-              <!-- <li>Priority Boarding</li>
-              <li>Priority check-in</li>
-              <li>Online check-in up to 30 days before departure</li>
-              <li>Free airport and online check-in</li>
-              <li>Auto check-in</li>
-              <li>
-                Flight Information
-              </li> -->
-              <li>Free drink & snack</li>
-              <li>Flexible booking</li>
-            </mat-card-content>
+        <mat-card-content>
+          <ul>
+            <li>
+              Free carry-on bag (40 x 30 x 20 cm) in the cabin, placed under the
+              seat
+            </li>
+            <li>Trolley Bag (55 x 40 x 23 cm) in the cabin</li>
+            <li>32 kg checked-in bag</li>
+            <li>
+              Free seat selection.
+            </li>
+
+            <li>Priority Boarding</li>
+            <li>Priority check-in</li>
+            <li>Online check-in up to 30 days before departure</li>
+            <li>Free airport and online check-in</li>
+            <li>Auto check-in</li>
+            <!-- <li>
+              Flight Information
+            </li>
+            <li>Free drink & snack</li>
+            <li>Flexible booking</li> -->
+          </ul>
+          <div class="extra-price">
+            <h4>per passenger</h4>
+            <button mat-button>
+              +
+              {{ (extras.premium * selectedCurrency).toFixed(0) }}
+              {{
+                selectedCurrency == usd
+                  ? "USD"
+                  : selectedCurrency == pln
+                  ? "PLN"
+                  : "EUR"
+              }}
+            </button>
           </div>
-          <div class="flex-thingies-child2">
-            per passenger
-            <mat-card-actions>
-              <button mat-button>
-                +
-                {{ (extras.premium * selectedCurrency).toFixed(0) }}
-                {{
-                  selectedCurrency == usd
-                    ? "USD"
-                    : selectedCurrency == pln
-                    ? "PLN"
-                    : "EUR"
-                }}
-              </button>
-            </mat-card-actions>
-          </div>
-        </div>
+        </mat-card-content>
       </mat-card>
     </div>
   </div>

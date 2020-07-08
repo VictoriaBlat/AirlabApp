@@ -1,1 +1,45 @@
-<p>summary works!</p>
+<div class="content-wrapper">
+  <div *ngFor="let passenger of repeatData; let x = index">
+    <mat-card class="passengers-cards">
+      <mat-card-header> </mat-card-header>
+
+      <mat-card-content>
+        <!-- <h2>{{ x + 1 }}.Passenger &#160;</h2> -->
+        <h2>
+          {{ x + 1 }}.{{ passenger.data.name }}{{ passenger.data.surname }}
+        </h2>
+        <mat-card-subtitle>{{ passenger.data.email }}</mat-card-subtitle>
+        <mat-card-subtitle
+          >Departing flight:&#160;{{ booking.departureDate
+          }}{{ booking.departureCity }}-{{
+            booking.arrivalCity
+          }}</mat-card-subtitle
+        >
+        <mat-card-subtitle *ngIf="booking.roundTrip == true"
+          >Return flight:&#160;{{ booking.arrivalDate
+          }}{{ booking.arrivalCity }}-{{
+            booking.departureCity
+          }}</mat-card-subtitle
+        >
+
+        <p>
+          Seat: {{ passenger.value }} &#160;Class:&#160;{{
+            bookingDetails.option
+          }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="qute">
+    <!-- <mat-card-content> -->
+    <div class="right">
+      <h1>
+        Total: {{ bookingDetails.total }}
+        <span>{{ bookingDetails.paymentCurrency }}</span>
+      </h1>
+      <button class="wrapper-child" mat-raised-button>BUY</button>
+    </div>
+
+    <!-- </mat-card-content> -->
+  </div>
+</div>

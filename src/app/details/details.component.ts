@@ -12,6 +12,7 @@ export class DetailsComponent implements OnInit {
   info = connectionsInfo;
   extras = extraCosts;
   bookingData;
+  bookingDetails;
   numberOfPassengers: number;
   totalPriceEUR: number;
   selectedCurrency = 1;
@@ -20,7 +21,8 @@ export class DetailsComponent implements OnInit {
   extrasTotal = 0;
   pln: number;
   usd: number;
-
+  paymentCurrency;
+  total;
   constructor(public buyMore: MatDialog) {}
 
   ngOnInit(): void {
@@ -58,6 +60,24 @@ export class DetailsComponent implements OnInit {
     this.numberOfPassengers = adults + childs + infants;
   }
   goToDetails() {
+    this.paymentCurrency =
+      this.selectedCurrency == this.usd
+        ? 'USD'
+        : this.selectedCurrency == this.pln
+        ? 'PLN'
+        : 'EUR';
+    this.total = (this.selectedCurrency * this.totalPriceEUR).toFixed(2);
+    this.bookingDetails = {
+      paymentCurrency: this.paymentCurrency,
+      option: this.option,
+      extrasTotal: this.extrasTotal,
+      total: this.total,
+    };
+    localStorage.setItem(
+      'booking-details',
+      JSON.stringify(this.bookingDetails)
+    );
+    console.log(this.paymentCurrency);
     if (this.option === 'basic') {
       this.buyMore.open(AddMoreDialogComponent);
     }

@@ -1,0 +1,15 @@
+body {
+  padding: 15px;
+}
+.register {
+  margin-top: 30px;
+}
+
+h2 {
+  font-family: Poppins, sans-serif;
+}
+.fat {
+  font-family: Poppins, sans-serif;
+  font-weight: bold;
+  font-size: x-large;
+}

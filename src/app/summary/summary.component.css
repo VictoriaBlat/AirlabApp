@@ -1,0 +1,20 @@
+.passengers-cards {
+  margin: 15px;
+}
+
+:host /deep/ h1 {
+  font-family: Poppins, sans-serif;
+}
+.right {
+  margin-right: 15px;
+  float: right;
+}
+
+.wrapper-child {
+  border: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+.content-wrapper {
+  margin-bottom: 200px;
+}

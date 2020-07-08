@@ -8,10 +8,10 @@ export const users = [
   },
   {
     id: 2,
-    email: 'example2@example.com',
-    password: 23457,
-    firstName: 'Anna',
-    lastname: 'Fernandes',
+    email: 'marcin.dl@cdv.com',
+    password: 'ilovemystudents',
+    firstName: 'Marcin',
+    lastname: 'Dlubis',
   },
   {
     id: 3,
@@ -73,13 +73,6 @@ export const users = [
     id: 11,
     email: 'example11@example.com',
     password: 1144,
-    firstName: 'John',
-    lastname: 'Jessen',
-  },
-  {
-    id: 11,
-    email: 'test',
-    password: 1234,
     firstName: 'John',
     lastname: 'Jessen',
   },

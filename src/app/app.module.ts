@@ -33,6 +33,7 @@ import { PlaneBInternationalComponent } from './choose-seats/plane-b-internation
 import { PlaneCContinentalComponent } from './choose-seats/plane-c-continental/plane-c-continental.component';
 import { PlaneADomesticComponent } from './choose-seats/plane-a-domestic/plane-a-domestic.component';
 import { AddMoreDialogComponent } from './add-more-dialog/add-more-dialog.component';
+import { WrongLoginComponent } from './wrong-login/wrong-login.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AddMoreDialogComponent } from './add-more-dialog/add-more-dialog.compon
     PlaneCContinentalComponent,
     PlaneADomesticComponent,
     AddMoreDialogComponent,
+    WrongLoginComponent,
   ],
   entryComponents: [DialogSearchComponent],
   imports: [
