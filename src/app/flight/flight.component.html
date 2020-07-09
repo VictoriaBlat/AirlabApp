@@ -162,7 +162,8 @@
         (this.roundTrip === true && this.arrivalDate == null) ||
         this.arrivalCity == null ||
         this.departureDate == null ||
-        this.departureCity == null
+        this.departureCity == null ||
+        this.arrivalDate < this.departureDate
           ? '/flight'
           : '/details'
       "

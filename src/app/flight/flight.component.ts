@@ -4,7 +4,7 @@ import { connectionsInfo } from '../connectionsInfo';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogSearchComponent } from '../dialog-search/dialog-search.component';
 import { SessionTimeoutComponent } from '../session-timeout/session-timeout.component';
-
+import { DialogWrongDateComponent } from './dialog-wrong-date/dialog-wrong-date.component';
 @Component({
   selector: 'app-flight',
   templateUrl: './flight.component.html',
@@ -43,13 +43,22 @@ export class FlightComponent implements OnInit {
   constructor(
     private router: Router,
     public dialog1: MatDialog,
-    public dialog2: MatDialog
+    public dialog2: MatDialog,
+    public dialogDate: MatDialog
   ) {}
   sessionPassed() {
     this.dialog2.open(SessionTimeoutComponent);
   }
   changeDate(ev) {
     this[ev.targetElement.id] = ev.value;
+    if (this.arrivalDate < this.departureDate) {
+      this.openDialogWrongDate();
+      console.log('errrrrrosss');
+      this.arrivalDate = '';
+    }
+  }
+  openDialogWrongDate() {
+    this.dialogDate.open(DialogWrongDateComponent);
   }
   openDialog() {
     this.dialog1.open(DialogSearchComponent);
@@ -202,8 +211,19 @@ export class FlightComponent implements OnInit {
       this.departureCity == null
     ) {
       {
+        if (this.arrivalDate < this.departureDate) {
+          this.openDialogWrongDate();
+          console.log('errrrrrosss');
+          this.arrivalDate = '';
+        }
+
         this.openDialog();
       }
+    }
+    if (this.arrivalDate < this.departureDate) {
+      this.openDialogWrongDate();
+      console.log('errrrrrosss');
+      this.arrivalDate = '';
     }
     if (this.roundTrip === true) {
       this.totalPrice = this.totalpassengers * (this.price[0] + this.price[1]);
