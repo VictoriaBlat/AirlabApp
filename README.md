@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
 
-For a sneak peak check out https://victoriablat.github.io/AirlabApp/flight
+For a sneak peak check out https://victoriablat.github.io/AirlabApp/
 Login data: 
 email: aldous.huxley@gmail.com
     password: bravenewworld
