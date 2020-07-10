@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-session-timeout',
@@ -6,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./session-timeout.component.css'],
 })
 export class SessionTimeoutComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   refreshPage() {
-    window.location.reload();
+    this.router.navigate(['/flight']);
+    // window.location.reload();
   }
 }

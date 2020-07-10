@@ -76,4 +76,11 @@ export const users = [
     firstName: 'John',
     lastname: 'Jessen',
   },
+  {
+    id: 12,
+    email: 'aldous.huxley@gmail.com',
+    password: 'bravenewworld',
+    firstName: 'Aldous',
+    lastname: 'Huxley',
+  },
 ];
