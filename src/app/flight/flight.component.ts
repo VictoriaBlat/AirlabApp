@@ -258,6 +258,6 @@ export class FlightComponent implements OnInit {
     setTimeout(() => {
       this.sessionPassed();
       localStorage.clear();
-    }, 18000); //120000 or longer ??
+    }, 180000); //120000 or longer ??
   }
 }
