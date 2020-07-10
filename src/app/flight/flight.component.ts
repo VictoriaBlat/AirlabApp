@@ -47,7 +47,7 @@ export class FlightComponent implements OnInit {
     public dialogDate: MatDialog
   ) {}
   sessionPassed() {
-    this.dialog2.open(SessionTimeoutComponent);
+    this.dialog2.open(SessionTimeoutComponent, { disableClose: true });
   }
   changeDate(ev) {
     this[ev.targetElement.id] = ev.value;
@@ -258,6 +258,6 @@ export class FlightComponent implements OnInit {
     setTimeout(() => {
       this.sessionPassed();
       localStorage.clear();
-    }, 180000); //120000 or longer ??
+    }, 18000); //120000 or longer ??
   }
 }
