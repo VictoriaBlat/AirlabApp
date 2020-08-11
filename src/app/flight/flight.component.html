@@ -1,22 +1,18 @@
 <body>
   <div class="content-wrapper">
     <h1 class="header">PURCHASE A TICKET</h1>
-    <!-- miejsce wylotu -->
     <mat-form-field appearance="fill" class="wrapper-child">
       <mat-label>Departure place</mat-label>
-      <!--  -->
       <mat-select (selectionChange)="changeDeparture($event)">
         <mat-option *ngFor="let city of opts" [value]="city">
           {{ city.city }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <!-- miejsce przylotu -->
 
     <div *ngIf="arrivalOptions">
       <mat-form-field appearance="fill" class="wrapper-child">
         <mat-label>Arrival </mat-label>
-        <!--  -->
         <mat-select (selectionChange)="changeArrivalCity($event)">
           <mat-option *ngFor="let city of arrivalOptions" [value]="city.city">
             {{ city.city }}
@@ -24,7 +20,6 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <!-- DATE PICKER MATERIAL  -->
     <mat-form-field class="wrapper-child" appearance="fill">
       <mat-label>Choose departure date</mat-label>
       <input
