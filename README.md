@@ -1,11 +1,18 @@
-# airlab
+# Airlab
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
+Airlab was a student project I've created during the postgraduate studies at Collegium da Vinci.
 
 For a sneak peak check out https://victoriablat.github.io/AirlabApp/
 Login data: 
 email: aldous.huxley@gmail.com
     password: bravenewworld
+    
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
+
+
+
+
+
 
 ## Development server
 
