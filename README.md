@@ -9,6 +9,14 @@ email: aldous.huxley@gmail.com
     
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
 
+![screencast langing page](airlab1.png)
+![screencast options](airlab2.png)
+![screencast choose seats](airlab3.png)
+![screencast login](airlab4.png)
+![screencast welcome user](airlab5.png)
+![screencast confirm](airlab5.png)
+
+
 
 
 
