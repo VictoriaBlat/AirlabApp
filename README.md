@@ -1,6 +1,7 @@
 # Airlab
 
-Airlab was a student project I've created during the postgraduate studies at Collegium da Vinci.
+Airlab was a student project I've created during the postgraduate studies at Collegium da Vinci. 
+The main prerequisite of the project was to write the frontend for an air ticket reservation system. 
 
 For a sneak peak check out https://victoriablat.github.io/AirlabApp/
 Login data: 
