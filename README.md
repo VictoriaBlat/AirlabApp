@@ -15,7 +15,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ![screencast choose seats](airlab3.png)
 ![screencast login](airlab4.png)
 ![screencast welcome user](airlab5.png)
-![screencast confirm](airlab5.png)
+![screencast confirm](airla6.png)
 
 
 
