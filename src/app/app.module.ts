@@ -35,6 +35,7 @@ import { PlaneADomesticComponent } from './choose-seats/plane-a-domestic/plane-a
 import { AddMoreDialogComponent } from './add-more-dialog/add-more-dialog.component';
 import { WrongLoginComponent } from './wrong-login/wrong-login.component';
 import { DialogWrongDateComponent } from './flight/dialog-wrong-date/dialog-wrong-date.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { DialogWrongDateComponent } from './flight/dialog-wrong-date/dialog-wron
     MatIconModule,
     MatCardModule,
     MatAutocompleteModule,
+    IvyCarouselModule,
   ],
   providers: [
     {

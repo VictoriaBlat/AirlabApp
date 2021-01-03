@@ -45,9 +45,6 @@ export class LoginComponent implements OnInit {
         this.userName = data.firstName;
         log = true;
         this._location.back();
-        // this.router.navigate(['/details']);
-        // window.location.reload();
-
         break;
       } else {
         log = false;

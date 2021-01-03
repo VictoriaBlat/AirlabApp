@@ -51,7 +51,6 @@ export class DetailsComponent implements OnInit {
         : this.option === 'premium'
         ? 25
         : 0);
-    console.log(this.extrasTotal);
     this.totalPriceEUR = this.totalPriceEUR + this.extrasTotal;
   }
 
@@ -77,7 +76,6 @@ export class DetailsComponent implements OnInit {
       'booking-details',
       JSON.stringify(this.bookingDetails)
     );
-    console.log(this.paymentCurrency);
     if (this.option === 'basic') {
       this.buyMore.open(AddMoreDialogComponent);
     }

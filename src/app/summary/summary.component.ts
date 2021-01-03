@@ -27,7 +27,5 @@ export class SummaryComponent implements OnInit {
         value: valueArray[index],
       };
     });
-
-    console.log(this.repeatData);
   }
 }

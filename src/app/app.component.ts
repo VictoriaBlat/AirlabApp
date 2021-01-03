@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
   isLogged;
   ngOnInit() {
     this.isLogged = JSON.parse(localStorage.getItem('loggedIn'));
-    console.log('is it logged', this.isLogged);
   }
 
   countPassengers() {

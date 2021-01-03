@@ -211,7 +211,6 @@ export class FlightComponent implements OnInit {
       {
         if (this.arrivalDate < this.departureDate) {
           this.openDialogWrongDate();
-          console.log('errrrrrosss');
           this.arrivalDate = '';
         }
 
@@ -220,7 +219,6 @@ export class FlightComponent implements OnInit {
     }
     if (this.arrivalDate < this.departureDate) {
       this.openDialogWrongDate();
-      console.log('errrrrrosss');
       this.arrivalDate = '';
     }
     if (this.roundTrip === true) {
@@ -256,6 +254,6 @@ export class FlightComponent implements OnInit {
     setTimeout(() => {
       this.sessionPassed();
       localStorage.clear();
-    }, 180000); //120000 or longer ??
+    }, 180000);
   }
 }
